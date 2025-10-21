@@ -424,7 +424,7 @@ function selectState(uf) {
     if (!state) return;
     
     // Toggle selection
-    const button = document.querySelector(`button[onclick="selectState('${uf}')"]`);
+    const button = document.querySelector(`.state-button:nth-child(${Object.keys(brazilStates).indexOf(uf) + 1})`);
     const isSelected = selectedStates.includes(uf);
     
     if (isSelected) {
@@ -455,7 +455,7 @@ function selectState(uf) {
 function showStateInfo(uf) {
     const state = brazilStates[uf];
     const infoPanel = document.getElementById('stateInfo');
-    const button = document.querySelector(`button[onclick="selectState('${uf}')"]`);
+    const button = document.querySelector(`.state-button:nth-child(${Object.keys(brazilStates).indexOf(uf) + 1})`);
     
     // Position info panel near the button
     const rect = button.getBoundingClientRect();
@@ -537,7 +537,7 @@ function updateSelectedStates() {
 // Remove state from selection
 function removeState(uf) {
     selectedStates = selectedStates.filter(s => s !== uf);
-    const button = document.querySelector(`button[onclick="selectState('${uf}')"]`);
+    const button = document.querySelector(`.state-button:nth-child(${Object.keys(brazilStates).indexOf(uf) + 1})`);
     button.classList.remove('selected');
     updateSelectedStates();
 }
@@ -581,7 +581,7 @@ function drawRoutes() {
 // Clear all routes
 function clearRoute() {
     selectedStates.forEach(uf => {
-        const button = document.querySelector(`button[onclick="selectState('${uf}')"]`);
+        const button = document.querySelector(`.state-button:nth-child(${Object.keys(brazilStates).indexOf(uf) + 1})`);
         button.classList.remove('selected');
     });
     
@@ -843,7 +843,7 @@ function showNotification(message, type = 'info') {
     
     // Animate out and remove
     setTimeout(() => {
-        notification.style.transform = 'translateX(full)';
+        notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
             notification.remove();
         }, 300);
