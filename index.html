@@ -35,69 +35,41 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        .brazil-map {
+        .region-map {
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
             border-radius: 20px;
-            position: relative;
-            overflow: hidden;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
         }
-        .state-button {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        .region-map i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #4f46e5;
         }
-        .state-button:hover {
-            transform: scale(1.2);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        .state-card {
+            border-left: 4px solid;
+            transition: all 0.2s ease;
         }
-        .state-button.selected {
-            transform: scale(1.3);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.5);
+        .state-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
-        .route-line {
-            position: absolute;
-            height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            border-radius: 2px;
-            opacity: 0;
-            animation: routeAppear 1s ease-out forwards;
-        }
-        @keyframes routeAppear {
-            to { opacity: 0.8; }
-        }
-        .city-marker {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #ef4444;
-            border: 2px solid white;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .city-marker:hover {
-            transform: scale(1.5);
-            background: #dc2626;
-        }
-        .state-info {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+        .attraction-card {
+            border: 1px solid #e5e7eb;
             border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: absolute;
-            z-index: 10;
-            min-width: 200px;
-            display: none;
+            padding: 1rem;
+        }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: #7c3aed;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            color: #6d28d9;
         }
     </style>
 </head>
@@ -161,7 +133,6 @@
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">Escanear QR Code</h2>
                 <p class="text-xl text-gray-600">Aproxime sua câmera do QR Code ou clique em um dos pontos turísticos abaixo</p>
             </div>
-            
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="text-center">
                     <div class="qr-scanner w-80 h-80 mx-auto rounded-lg flex items-center justify-center mb-6">
@@ -175,7 +146,6 @@
                         Simular Leitura QR
                     </button>
                 </div>
-                
                 <div class="space-y-4">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-6">Pontos Turísticos Próximos</h3>
                     <div class="space-y-4" id="nearbyLocations">
@@ -201,13 +171,11 @@
                             </div>
                             <h2 class="text-3xl font-bold text-gray-800 mb-4" id="contentTitle">Título do Local</h2>
                             <p class="text-gray-600 leading-relaxed mb-6" id="contentDescription">Descrição do local histórico...</p>
-                            
                             <div class="flex flex-wrap gap-2 mb-6">
                                 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">#História</span>
                                 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">#Cultura</span>
                                 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">#Patrimônio</span>
                             </div>
-                            
                             <div class="flex space-x-4">
                                 <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">
                                     <i class="fas fa-share mr-2"></i>Compartilhar
@@ -229,82 +197,84 @@
     </section>
 
     <!-- Interactive Brazil Explorer Section -->
-<section id="map" class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Explorar Brasil</h2>
-      <p class="text-xl text-gray-600">Descubra pontos turísticos por região, estado e cidade</p>
-    </div>
+    <section id="map" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Explorar Brasil</h2>
+                <p class="text-xl text-gray-600">Descubra pontos turísticos por região, estado e cidade</p>
+            </div>
 
-    <!-- Step 1: Region Selection -->
-    <div id="step-region" class="text-center">
-      <h3 class="text-2xl font-semibold mb-6">Escolha uma região do Brasil</h3>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 max-w-4xl mx-auto">
-        <button class="region-card bg-blue-100 hover:bg-blue-200 p-5 rounded-xl transition-all" data-region="norte">
-          <i class="fas fa-mountain text-blue-700 text-2xl mb-2"></i>
-          <div class="font-medium">Norte</div>
-        </button>
-        <button class="region-card bg-amber-100 hover:bg-amber-200 p-5 rounded-xl transition-all" data-region="nordeste">
-          <i class="fas fa-umbrella-beach text-amber-700 text-2xl mb-2"></i>
-          <div class="font-medium">Nordeste</div>
-        </button>
-        <button class="region-card bg-purple-100 hover:bg-purple-200 p-5 rounded-xl transition-all" data-region="centro-oeste">
-          <i class="fas fa-tree text-purple-700 text-2xl mb-2"></i>
-          <div class="font-medium">Centro-Oeste</div>
-        </button>
-        <button class="region-card bg-indigo-100 hover:bg-indigo-200 p-5 rounded-xl transition-all" data-region="sudeste">
-          <i class="fas fa-city text-indigo-700 text-2xl mb-2"></i>
-          <div class="font-medium">Sudeste</div>
-        </button>
-        <button class="region-card bg-red-100 hover:bg-red-200 p-5 rounded-xl transition-all" data-region="sul">
-          <i class="fas fa-wine-bottle text-red-700 text-2xl mb-2"></i>
-          <div class="font-medium">Sul</div>
-        </button>
-        <button class="region-card bg-emerald-100 hover:bg-emerald-200 p-5 rounded-xl transition-all" data-region="all">
-          <i class="fas fa-map-marked-alt text-emerald-700 text-2xl mb-2"></i>
-          <div class="font-medium">Todo Brasil</div>
-        </button>
-      </div>
-    </div>
+            <!-- Step 1: Region Selection -->
+            <div id="step-region" class="text-center">
+                <h3 class="text-2xl font-semibold mb-6">Escolha uma região do Brasil</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 max-w-4xl mx-auto">
+                    <button class="region-card bg-blue-100 hover:bg-blue-200 p-5 rounded-xl transition-all" data-region="norte">
+                        <i class="fas fa-mountain text-blue-700 text-2xl mb-2"></i>
+                        <div class="font-medium">Norte</div>
+                    </button>
+                    <button class="region-card bg-amber-100 hover:bg-amber-200 p-5 rounded-xl transition-all" data-region="nordeste">
+                        <i class="fas fa-umbrella-beach text-amber-700 text-2xl mb-2"></i>
+                        <div class="font-medium">Nordeste</div>
+                    </button>
+                    <button class="region-card bg-purple-100 hover:bg-purple-200 p-5 rounded-xl transition-all" data-region="centro-oeste">
+                        <i class="fas fa-tree text-purple-700 text-2xl mb-2"></i>
+                        <div class="font-medium">Centro-Oeste</div>
+                    </button>
+                    <button class="region-card bg-indigo-100 hover:bg-indigo-200 p-5 rounded-xl transition-all" data-region="sudeste">
+                        <i class="fas fa-city text-indigo-700 text-2xl mb-2"></i>
+                        <div class="font-medium">Sudeste</div>
+                    </button>
+                    <button class="region-card bg-red-100 hover:bg-red-200 p-5 rounded-xl transition-all" data-region="sul">
+                        <i class="fas fa-wine-bottle text-red-700 text-2xl mb-2"></i>
+                        <div class="font-medium">Sul</div>
+                    </button>
+                    <button class="region-card bg-emerald-100 hover:bg-emerald-200 p-5 rounded-xl transition-all" data-region="all">
+                        <i class="fas fa-map-marked-alt text-emerald-700 text-2xl mb-2"></i>
+                        <div class="font-medium">Todo Brasil</div>
+                    </button>
+                </div>
+            </div>
 
-    <!-- Step 2: State Selection -->
-    <div id="step-state" class="hidden">
-      <button id="back-to-region" class="mb-6 text-purple-600 flex items-center font-medium">
-        <i class="fas fa-arrow-left mr-2"></i> Voltar às regiões
-      </button>
-      <h3 class="text-2xl font-semibold mb-6">Estados da região <span id="region-title" class="text-purple-600"></span></h3>
-      <div id="states-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
-    </div>
+            <!-- Step 2: State Selection -->
+            <div id="step-state" class="hidden">
+                <div class="back-button" id="back-to-region">
+                    <i class="fas fa-arrow-left mr-2"></i> Voltar às regiões
+                </div>
+                <div class="region-map" id="regionMapPlaceholder"></div>
+                <h3 class="text-2xl font-semibold mb-6">Estados da região <span id="region-title" class="text-purple-600"></span></h3>
+                <div id="states-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+            </div>
 
-    <!-- Step 3: Cities & Attractions -->
-    <div id="step-city" class="hidden">
-      <button id="back-to-state" class="mb-6 text-purple-600 flex items-center font-medium">
-        <i class="fas fa-arrow-left mr-2"></i> Voltar aos estados
-      </button>
-      <h3 class="text-2xl font-semibold mb-6">Pontos turísticos em <span id="state-title" class="text-purple-600"></span></h3>
-      <div id="cities-list" class="space-y-4"></div>
-    </div>
+            <!-- Step 3: Cities & Attractions -->
+            <div id="step-city" class="hidden">
+                <div class="back-button" id="back-to-state">
+                    <i class="fas fa-arrow-left mr-2"></i> Voltar aos estados
+                </div>
+                <h3 class="text-2xl font-semibold mb-6">Pontos turísticos em <span id="state-title" class="text-purple-600"></span></h3>
+                <div id="state-full-content" class="bg-white rounded-xl p-6 shadow mb-6"></div>
+                <div id="cities-list" class="space-y-4"></div>
+            </div>
 
-    <!-- Selected States Panel (mantido, mas agora com botão "Adicionar ao Roteiro" nos cards de cidade) -->
-    <div class="mt-16 bg-gray-50 rounded-2xl p-6">
-      <h3 class="text-xl font-semibold mb-4">Seu Roteiro de Viagem</h3>
-      <div id="selectedStates" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="text-center text-gray-500 py-8 col-span-full">
-          <i class="fas fa-map-marked-alt text-4xl mb-3"></i>
-          <p>Selecione estados ou cidades para criar seu roteiro</p>
+            <!-- Selected States Panel -->
+            <div class="mt-16 bg-gray-50 rounded-2xl p-6">
+                <h3 class="text-xl font-semibold mb-4">Seu Roteiro de Viagem</h3>
+                <div id="selectedStates" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="text-center text-gray-500 py-8 col-span-full">
+                        <i class="fas fa-map-marked-alt text-4xl mb-3"></i>
+                        <p>Selecione estados ou cidades para criar seu roteiro</p>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-center space-x-4">
+                    <button onclick="clearRoute()" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                        <i class="fas fa-trash mr-2"></i>Limpar Roteiro
+                    </button>
+                    <button onclick="optimizeRoute()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-route mr-2"></i>Otimizar Rota
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="mt-6 flex justify-center space-x-4">
-        <button onclick="clearRoute()" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors">
-          <i class="fas fa-trash mr-2"></i>Limpar Roteiro
-        </button>
-        <button onclick="optimizeRoute()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
-          <i class="fas fa-route mr-2"></i>Otimizar Rota
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- About Section -->
     <section id="about" class="py-20 bg-gray-50">
@@ -316,7 +286,6 @@
                     tornando a história acessível a todos.
                 </p>
             </div>
-            
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="text-center">
                     <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -325,7 +294,6 @@
                     <h3 class="text-xl font-semibold mb-3">Acessibilidade</h3>
                     <p class="text-gray-600">Conteúdo disponível em áudio e múltiplos idiomas para incluir todos os visitantes</p>
                 </div>
-                
                 <div class="text-center">
                     <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-mobile-alt text-2xl text-blue-600"></i>
@@ -333,7 +301,6 @@
                     <h3 class="text-xl font-semibold mb-3">Tecnologia</h3>
                     <p class="text-gray-600">Uso inteligente de QR Codes para fornecer informações instantâneas e relevantes</p>
                 </div>
-                
                 <div class="text-center">
                     <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-leaf text-2xl text-green-600"></i>
@@ -355,7 +322,6 @@
             <p class="text-gray-400">© 2024 Conhecimento Digital. Transformando o Turismo Digital.</p>
         </div>
     </footer>
-
     <script src="main.js"></script>
 </body>
 </html>
