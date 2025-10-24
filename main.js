@@ -873,5 +873,186 @@ function observeElements() {
     });
 }
 
+// === NOVAS FUNÇÕES PARA O FLUXO REGIÃO → ESTADO → CIDADE ===
+
+// Mapeamento de regiões para nomes amigáveis
+const regionNames = {
+  norte: 'Norte',
+  nordeste: 'Nordeste',
+  'centro-oeste': 'Centro-Oeste',
+  sudeste: 'Sudeste',
+  sul: 'Sul',
+  all: 'Todo Brasil'
+};
+
+// Mostrar etapa de regiões
+function showRegionStep() {
+  document.getElementById('step-region').classList.remove('hidden');
+  document.getElementById('step-state').classList.add('hidden');
+  document.getElementById('step-city').classList.add('hidden');
+}
+
+// Mostrar etapa de estados
+function showStateStep(regionKey) {
+  const regionName = regionNames[regionKey] || regionKey;
+  document.getElementById('region-title').textContent = regionName;
+
+  // Filtrar estados
+  const statesInRegion = Object.entries(brazilStates).filter(([uf, data]) => 
+    regionKey === 'all' ? true : data.region === regionKey
+  );
+
+  const grid = document.getElementById('states-grid');
+  grid.innerHTML = '';
+
+  statesInRegion.forEach(([uf, state]) => {
+    const card = document.createElement('div');
+    card.className = 'bg-white p-4 rounded-lg shadow hover:shadow-md cursor-pointer transition-shadow border-l-4';
+    card.style.borderLeftColor = state.color;
+    card.innerHTML = `
+      <div class="font-bold text-gray-800">${state.name}</div>
+      <div class="text-sm text-gray-600 mt-1">${state.cities.length} cidades</div>
+    `;
+    card.onclick = () => showCityStep(uf);
+    grid.appendChild(card);
+  });
+
+  document.getElementById('step-region').classList.add('hidden');
+  document.getElementById('step-state').classList.remove('hidden');
+  document.getElementById('step-city').classList.add('hidden');
+}
+
+// Mostrar etapa de cidades e atrações
+function showCityStep(uf) {
+  const state = brazilStates[uf];
+  if (!state) return;
+
+  document.getElementById('state-title').textContent = state.name;
+
+  const list = document.getElementById('cities-list');
+  list.innerHTML = '';
+
+  // Adicionar cidades
+  state.cities.forEach(city => {
+    const cityCard = document.createElement('div');
+    cityCard.className = 'bg-white p-4 rounded-lg shadow flex justify-between items-start';
+    cityCard.innerHTML = `
+      <div>
+        <div class="font-semibold text-gray-800 flex items-center">
+          <i class="fas fa-map-marker-alt text-red-500 mr-2"></i>
+          ${city}
+        </div>
+        <div class="text-sm text-gray-600 mt-1">Cidade histórica</div>
+      </div>
+      <button onclick="addToItinerary('${uf}', '${city}')" 
+              class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm hover:bg-purple-700">
+        Adicionar ao Roteiro
+      </button>
+    `;
+    list.appendChild(cityCard);
+  });
+
+  // Adicionar atrações (se houver)
+  if (state.attractions && state.attractions.length > 0) {
+    const attrTitle = document.createElement('h4');
+    attrTitle.className = 'font-semibold text-gray-700 mt-6 mb-3';
+    attrTitle.textContent = 'Atrações Turísticas';
+    list.appendChild(attrTitle);
+
+    state.attractions.forEach(attr => {
+      const attrCard = document.createElement('div');
+      attrCard.className = 'bg-white p-4 rounded-lg shadow flex justify-between items-start';
+      attrCard.innerHTML = `
+        <div>
+          <div class="font-semibold text-gray-800 flex items-center">
+            <i class="fas fa-monument text-blue-500 mr-2"></i>
+            ${attr}
+          </div>
+          <div class="text-sm text-gray-600 mt-1">Ponto turístico</div>
+        </div>
+        <button onclick="addToItinerary('${uf}', '${attr}')" 
+                class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm hover:bg-purple-700">
+          Adicionar ao Roteiro
+        </button>
+      `;
+      list.appendChild(attrCard);
+    });
+  }
+
+  document.getElementById('step-state').classList.add('hidden');
+  document.getElementById('step-city').classList.remove('hidden');
+}
+
+// Voltar às regiões
+document.getElementById('back-to-region')?.addEventListener('click', showRegionStep);
+// Voltar aos estados
+document.getElementById('back-to-state')?.addEventListener('click', () => {
+  const currentRegion = selectedStates.length > 0 
+    ? brazilStates[selectedStates[0]]?.region || 'all' 
+    : 'all';
+  showStateStep(currentRegion);
+});
+
+// Adicionar item ao roteiro
+function addToItinerary(uf, itemName) {
+  const state = brazilStates[uf];
+  if (!state) return;
+
+  // Evitar duplicatas
+  const exists = selectedStates.some(s => s === uf);
+  if (!exists) {
+    selectedStates.push(uf);
+  }
+
+  updateSelectedStates();
+  showNotification(`"${itemName}" adicionado ao roteiro!`, 'success');
+}
+
+// Atualizar roteiro com mais detalhes
+function updateSelectedStates() {
+  const container = document.getElementById('selectedStates');
+  if (selectedStates.length === 0) {
+    container.innerHTML = `
+      <div class="text-center text-gray-500 py-8 col-span-full">
+        <i class="fas fa-map-marked-alt text-4xl mb-3"></i>
+        <p>Selecione estados ou cidades para criar seu roteiro</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = '';
+  selectedStates.forEach(uf => {
+    const state = brazilStates[uf];
+    const card = document.createElement('div');
+    card.className = 'bg-white p-4 rounded-lg shadow-md border-l-4';
+    card.style.borderLeftColor = state.color;
+    card.innerHTML = `
+      <div class="flex justify-between items-start">
+        <h4 class="font-semibold text-gray-800">${state.name}</h4>
+        <button onclick="removeState('${uf}')" class="text-red-500 hover:text-red-700">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <p class="text-sm text-gray-600 mt-1">${state.description.substring(0, 80)}...</p>
+      <div class="text-xs text-gray-500 mt-2">
+        <i class="fas fa-map-marker-alt mr-1"></i> ${state.cities.length} cidades
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// Inicializar o fluxo ao carregar
+document.addEventListener('DOMContentLoaded', () => {
+  // Adicionar eventos aos cards de região
+  document.querySelectorAll('.region-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const region = btn.dataset.region;
+      showStateStep(region);
+    });
+  });
+});
+
 // Initialize scroll animations
 document.addEventListener('DOMContentLoaded', observeElements);
