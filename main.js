@@ -418,39 +418,43 @@ function initializeAnimations() {
 
 // Show state step
 function showStateStep(regionKey) {
-    const region = regionData[regionKey] || regionData.norte;
-    document.getElementById('region-title').textContent = region.name;
-    
-    // Update region map placeholder
-    const mapPlaceholder = document.getElementById('regionMapPlaceholder');
-    mapPlaceholder.innerHTML = `
-        <i class="${region.icon} text-6xl text-purple-600 mb-4"></i>
-        <p class="text-gray-600">${region.description}</p>
-    `;
+  const regionData = {
+    norte: { name: "Norte", icon: "fas fa-mountain" },
+    nordeste: { name: "Nordeste", icon: "fas fa-umbrella-beach" },
+    'centro-oeste': { name: "Centro-Oeste", icon: "fas fa-tree" },
+    sudeste: { name: "Sudeste", icon: "fas fa-city" },
+    sul: { name: "Sul", icon: "fas fa-mug-hot" },
+    all: { name: "Todo Brasil", icon: "fas fa-map-signs" }
+  };
+
+  const data = regionData[regionKey] || regionData.norte;
+  
+  document.getElementById('region-title').textContent = data.name;
+  document.getElementById('region-icon').className = `${data.icon} text-3xl text-purple-600`;
 
     // Filter states
     const statesInRegion = Object.entries(brazilStates).filter(([uf, data]) => 
-        regionKey === 'all' ? true : data.region === regionKey
-    );
+    regionKey === 'all' ? true : data.region === regionKey
+  );
 
-    const grid = document.getElementById('states-grid');
-    grid.innerHTML = '';
+  const grid = document.getElementById('states-grid');
+  grid.innerHTML = '';
 
-    statesInRegion.forEach(([uf, state]) => {
-        const card = document.createElement('div');
-        card.className = 'state-card bg-white p-4 rounded-lg shadow hover:shadow-md cursor-pointer transition-shadow border-l-4';
-        card.style.borderLeftColor = state.color;
-        card.innerHTML = `
-            <div class="font-bold text-gray-800">${state.name}</div>
-            <div class="text-sm text-gray-600 mt-1">${state.cities.length} cidades</div>
-        `;
-        card.onclick = () => showCityStep(uf);
-        grid.appendChild(card);
-    });
+  statesInRegion.forEach(([uf, state]) => {
+    const card = document.createElement('div');
+    card.className = 'bg-white p-4 rounded-lg shadow hover:shadow-md cursor-pointer transition-shadow border-l-4';
+    card.style.borderLeftColor = state.color;
+    card.innerHTML = `
+      <div class="font-bold text-gray-800">${state.name}</div>
+      <div class="text-sm text-gray-600 mt-1">${state.cities.length} cidades</div>
+    `;
+    card.onclick = () => showCityStep(uf);
+    grid.appendChild(card);
+  });
 
-    document.getElementById('step-region').classList.add('hidden');
-    document.getElementById('step-state').classList.remove('hidden');
-    document.getElementById('step-city').classList.add('hidden');
+  document.getElementById('step-region').classList.add('hidden');
+  document.getElementById('step-state').classList.remove('hidden');
+  document.getElementById('step-city').classList.add('hidden');
 }
 
 // Show city step
