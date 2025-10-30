@@ -311,17 +311,17 @@ const regionData = {
     norte: {
         name: "Região Norte",
         description: "Maior região do Brasil em área, abriga a Floresta Amazônica, rios majestosos e uma biodiversidade única. É o coração verde do país, com forte influência indígena e histórias de seringueiros e extrativistas.",
-        icon: "fas fa-tree"
+        icon: "fas fa-mountain"
     },
     nordeste: {
         name: "Região Nordeste",
         description: "Berço da história do Brasil, onde tudo começou em 1500. Mistura praias paradisíacas, sertão resistente, cultura afro-brasileira vibrante e tradições que encantam o mundo.",
-        icon: "fas fa-sun"
+        icon: "fas fa-umbrella-beach"
     },
     'centro-oeste': {
         name: "Região Centro-Oeste",
         description: "Região de contrastes: capital moderna (Brasília), Pantanal (maior planície alagável do mundo) e cerrado, berço das águas do Brasil. Terra de planejamento, natureza exuberante e espiritualidade.",
-        icon: "fas fa-landmark"
+        icon: "fas fa-tree"
     },
     sudeste: {
         name: "Região Sudeste",
@@ -331,7 +331,7 @@ const regionData = {
     sul: {
         name: "Região Sul",
         description: "Região de clima ameno, influência europeia marcante e paisagens que vão de praias atlânticas a montanhas com neve. Conhecida pela hospitalidade, tradição gaúcha e produção agrícola de excelência.",
-        icon: "fas fa-mountain"
+        icon: "fas fa-mug-hot"
     }
 };
 
