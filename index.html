@@ -74,6 +74,7 @@
     </style>
 </head>
 <body class="bg-gray-50">
+    
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-effect">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,6 +99,7 @@
             </div>
         </div>
     </nav>
+    
     <!-- Hero Section -->
     <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
         <div class="absolute inset-0 opacity-20">
@@ -124,6 +126,7 @@
             </div>
         </div>
     </section>
+    
     <!-- QR Scanner Section -->
     <section id="scanner" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4">
@@ -141,18 +144,21 @@
                     </div>
                     <button onclick="simulateQRScan()" class="bg-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition-colors">
                         <i class="fas fa-qrcode mr-2"></i>
+                        
                         Simular Leitura QR
                     </button>
                 </div>
                 <div class="space-y-4">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-6">Pontos Turísticos Próximos</h3>
                     <div class="space-y-4" id="nearbyLocations">
+                        
                         <!-- Dynamic content will be inserted here -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    
     <!-- Content Display Section -->
     <section id="content" class="py-20 bg-gray-50 hidden">
         <div class="max-w-6xl mx-auto px-4">
@@ -192,6 +198,7 @@
             </div>
         </div>
     </section>
+    
     <!-- Interactive Brazil Explorer Section -->
     <section id="map" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4">
@@ -199,6 +206,7 @@
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">Explorar Brasil</h2>
                 <p class="text-xl text-gray-600">Descubra pontos turísticos por região, estado e cidade</p>
             </div>
+            
             <!-- Step 1: Region Selection -->
             <div id="step-region" class="text-center">
                 <h3 class="text-2xl font-semibold mb-6">Escolha uma região do Brasil</h3>
@@ -229,6 +237,7 @@
                     </button>
                 </div>
             </div>
+            
             <!-- Step 2: State Selection -->
             <div id="step-state" class="hidden">
                 <div class="back-button" id="back-to-region">
@@ -238,6 +247,7 @@
                 <h3 class="text-2xl font-semibold mb-6">Estados da região <span id="region-title" class="text-purple-600"></span></h3>
                 <div id="states-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
             </div>
+            
             <!-- Step 3: Cities & Attractions -->
             <div id="step-city" class="hidden">
                 <div class="back-button" id="back-to-state">
@@ -247,6 +257,7 @@
                 <div id="state-full-content" class="bg-white rounded-xl p-6 shadow mb-6"></div>
                 <div id="cities-list" class="space-y-4"></div>
             </div>
+            
             <!-- Selected States Panel -->
             <div class="mt-16 bg-gray-50 rounded-2xl p-6">
                 <h3 class="text-xl font-semibold mb-4">Seu Roteiro de Viagem</h3>
@@ -267,6 +278,7 @@
             </div>
         </div>
     </section>
+    
     <!-- About Section -->
     <section id="about" class="py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4">
@@ -302,6 +314,7 @@
             </div>
         </div>
     </section>
+    
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="max-w-6xl mx-auto px-4 text-center">
