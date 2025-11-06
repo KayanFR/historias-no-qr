@@ -5,208 +5,119 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 
-// Importando os dados EXISTENTES (reutilizando sua estrutura do MainJS.txt)
-// ⚠️ Substitua este bloco por `import { brazilStates, regionData } from './data.js'` se modularizar depois
-// Aqui replico só o necessário (você já tem isso em main.js — vamos reutilizar a mesma estrutura!)
 const brazilStates = {
-  'AC': { name: 'Acre', region: 'norte', color: '#10b981', history: '...', curiosities: '...', cities: ['Rio Branco', 'Cruzeiro do Sul'], attractions: ['Parque Nacional da Serra do Divisor'] },
-  'AM': { name: 'Amazonas', region: 'norte', color: '#10b981', /* ... */ },
-  'AP': { name: 'Amapá', region: 'norte', color: '#10b981', /* ... */ },
-  'PA': { name: 'Pará', region: 'norte', color: '#10b981', /* ... */ },
-  'RO': { name: 'Rondônia', region: 'norte', color: '#10b981', /* ... */ },
-  'RR': { name: 'Roraima', region: 'norte', color: '#10b981', /* ... */ },
-  'TO': { name: 'Tocantins', region: 'norte', color: '#10b981', /* ... */ },
-  'MA': { name: 'Maranhão', region: 'nordeste', color: '#f59e0b', /* ... */ },
-  'PI': { name: 'Piauí', region: 'nordeste', color: '#f59e0b', /* ... */ },
-  'CE': { name: 'Ceará', region: 'nordeste', color: '#f59e0b', /* ... */ },
-  'RN': { name: 'Rio Grande do Norte', region: 'nordeste', color: '#f59e0b', /* ... */ },
-  'PB': { name: 'Paraíba', region: 'nordeste', color: '#f59e0b', /* ... */ },
-  'PE': { name: 'Pernambuco', region: 'nordeste', color: '#f59e0b', /* ... */ },
-  'AL': { name: 'Alagoas', region: 'nordeste', color: '#f59e0b', /* ... */ },
-  'SE': { name: 'Sergipe', region: 'nordeste', color: '#f59e0b', /* ... */ },
-  'BA': { name: 'Bahia', region: 'nordeste', color: '#f59e0b', /* ... */ },
-  'MG': { name: 'Minas Gerais', region: 'sudeste', color: '#3b82f6', /* ... */ },
-  'SP': { name: 'São Paulo', region: 'sudeste', color: '#3b82f6', /* ... */ },
-  'RJ': { name: 'Rio de Janeiro', region: 'sudeste', color: '#3b82f6', /* ... */ },
-  'ES': { name: 'Espírito Santo', region: 'sudeste', color: '#3b82f6', /* ... */ },
-  'DF': { name: 'Distrito Federal', region: 'centro-oeste', color: '#8b5cf6', /* ... */ },
-  'GO': { name: 'Goiás', region: 'centro-oeste', color: '#8b5cf6', /* ... */ },
-  'MT': { name: 'Mato Grosso', region: 'centro-oeste', color: '#8b5cf6', /* ... */ },
-  'MS': { name: 'Mato Grosso do Sul', region: 'centro-oeste', color: '#8b5cf6', /* ... */ },
-  'PR': { name: 'Paraná', region: 'sul', color: '#ef4444', /* ... */ },
-  'SC': { name: 'Santa Catarina', region: 'sul', color: '#ef4444', /* ... */ },
-  'RS': { name: 'Rio Grande do Sul', region: 'sul', color: '#ef4444', /* ... */ }
+  'AC': { name: 'Acre', region: 'norte', color: '#10b981', history: '...', curiosities: '...', cities: ['Rio Branco'], attractions: ['Parque Nacional da Serra do Divisor'] },
+  'AM': { name: 'Amazonas', region: 'norte', color: '#10b981', history: '...', curiosities: '...', cities: ['Manaus'], attractions: ['Teatro Amazonas'] },
+  'AP': { name: 'Amapá', region: 'norte', color: '#10b981', history: '...', curiosities: '...', cities: ['Macapá'], attractions: ['Marco Zero do Equador'] },
+  'PA': { name: 'Pará', region: 'norte', color: '#10b981', history: '...', curiosities: '...', cities: ['Belém'], attractions: ['Mercado Ver-o-Peso'] },
+  'RO': { name: 'Rondônia', region: 'norte', color: '#10b981', history: '...', curiosities: '...', cities: ['Porto Velho'], attractions: ['Estrada de Ferro Madeira-Mamoré'] },
+  'RR': { name: 'Roraima', region: 'norte', color: '#10b981', history: '...', curiosities: '...', cities: ['Boa Vista'], attractions: ['Monte Roraima'] },
+  'TO': { name: 'Tocantins', region: 'norte', color: '#10b981', history: '...', curiosities: '...', cities: ['Palmas'], attractions: ['Jalapão'] },
+  'MA': { name: 'Maranhão', region: 'nordeste', color: '#f59e0b', history: '...', curiosities: '...', cities: ['São Luís'], attractions: ['Lençóis Maranhenses'] },
+  'PI': { name: 'Piauí', region: 'nordeste', color: '#f59e0b', history: '...', curiosities: '...', cities: ['Teresina'], attractions: ['Parque Nacional da Serra da Capivara'] },
+  'CE': { name: 'Ceará', region: 'nordeste', color: '#f59e0b', history: '...', curiosities: '...', cities: ['Fortaleza'], attractions: ['Jericoacoara'] },
+  'RN': { name: 'Rio Grande do Norte', region: 'nordeste', color: '#f59e0b', history: '...', curiosities: '...', cities: ['Natal'], attractions: ['Dunas de Genipabu'] },
+  'PB': { name: 'Paraíba', region: 'nordeste', color: '#f59e0b', history: '...', curiosities: '...', cities: ['João Pessoa'], attractions: ['Praia do Jacaré'] },
+  'PE': { name: 'Pernambuco', region: 'nordeste', color: '#f59e0b', history: '...', curiosities: '...', cities: ['Recife'], attractions: ['Recife Antigo'] },
+  'AL': { name: 'Alagoas', region: 'nordeste', color: '#f59e0b', history: '...', curiosities: '...', cities: ['Maceió'], attractions: ['Praia do Gunga'] },
+  'SE': { name: 'Sergipe', region: 'nordeste', color: '#f59e0b', history: '...', curiosities: '...', cities: ['Aracaju'], attractions: ['Praia de Atalaia'] },
+  'BA': { name: 'Bahia', region: 'nordeste', color: '#f59e0b', history: '...', curiosities: '...', cities: ['Salvador'], attractions: ['Pelourinho'] },
+  'MG': { name: 'Minas Gerais', region: 'sudeste', color: '#3b82f6', history: '...', curiosities: '...', cities: ['Belo Horizonte'], attractions: ['Ouro Preto'] },
+  'SP': { name: 'São Paulo', region: 'sudeste', color: '#3b82f6', history: '...', curiosities: '...', cities: ['São Paulo'], attractions: ['Avenida Paulista'] },
+  'RJ': { name: 'Rio de Janeiro', region: 'sudeste', color: '#3b82f6', history: '...', curiosities: '...', cities: ['Rio de Janeiro'], attractions: ['Cristo Redentor'] },
+  'ES': { name: 'Espírito Santo', region: 'sudeste', color: '#3b82f6', history: '...', curiosities: '...', cities: ['Vitória'], attractions: ['Convento da Penhalapão'] },
+  'DF': { name: 'Distrito Federal', region: 'centro-oeste', color: '#8b5cf6', history: '...', curiosities: '...', cities: ['Brasília'], attractions: ['Praça dos Três Poderes'] },
+  'GO': { name: 'Goiás', region: 'centro-oeste', color: '#8b5cf6', history: '...', curiosities: '...', cities: ['Goiânia'], attractions: ['Chapada dos Veadeiros'] },
+  'MT': { name: 'Mato Grosso', region: 'centro-oeste', color: '#8b5cf6', history: '...', curiosities: '...', cities: ['Cuiabá'], attractions: ['Chapada dos Guimarães'] },
+  'MS': { name: 'Mato Grosso do Sul', region: 'centro-oeste', color: '#8b5cf6', history: '...', curiosities: '...', cities: ['Campo Grande'], attractions: ['Bonito'] },
+  'PR': { name: 'Paraná', region: 'sul', color: '#ef4444', history: '...', curiosities: '...', cities: ['Curitiba'], attractions: ['Cataratas do Iguaçu'] },
+  'SC': { name: 'Santa Catarina', region: 'sul', color: '#ef4444', history: '...', curiosities: '...', cities: ['Florianópolis'], attractions: ['Florianópolis'] },
+  'RS': { name: 'Rio Grande do Sul', region: 'sul', color: '#ef4444', history: '...', curiosities: '...', cities: ['Porto Alegre'], attractions: ['Gramado'] }
 };
 
-const regionData = {
-  norte: { name: "Região Norte", color: '#10b981' },
-  nordeste: { name: "Região Nordeste", color: '#f59e0b' },
-  'centro-oeste': { name: "Região Centro-Oeste", color: '#8b5cf6' },
-  sudeste: { name: "Região Sudeste", color: '#3b82f6' },
-  sul: { name: "Região Sul", color: '#ef4444' }
+const regionColors = {
+  norte: '#10b981',
+  nordeste: '#f59e0b',
+  'centro-oeste': '#8b5cf6',
+  sudeste: '#3b82f6',
+  sul: '#ef4444'
 };
 
-// Função para agrupar estados por região (para pré-carregar ao clicar em região)
-const getStatesByRegion = (regionKey) => {
-  return Object.entries(brazilStates)
-    .filter(([uf, data]) => data.region === regionKey)
-    .map(([uf, data]) => ({ uf, ...data }));
-};
-
-export default function MapaInterativoBrasil({ topojsonUrl = '/data/brazil-states.json' }) {
-  const [hoveredGeo, setHoveredGeo] = useState(null);
-  const [currentStep, setCurrentStep] = useState('region'); // 'region' | 'state' | 'city'
+export default function MapaInterativoBrasil({ geoUrl = '/data/brazil-states.json' }) {
+  const [currentStep, setCurrentStep] = useState('region'); // 'region' | 'state' | 'item'
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
-  const [selectedItem, setSelectedItem] = useState(null); // cidade ou atração
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  // Deriva cor do estado com base na região
-  const getColorByUf = (uf) => {
+  // Agrupa estados por região (para exibir após clicar)
+  const statesInRegion = useMemo(() => {
+    if (!selectedRegion) return [];
+    return Object.entries(brazilStates)
+      .filter(([uf, data]) => data.region === selectedRegion)
+      .map(([uf, data]) => ({ uf, ...data }));
+  }, [selectedRegion]);
+
+  // Deriva cor do estado pela região
+  const getStateColor = (uf) => {
     const state = brazilStates[uf];
-    return state ? state.color : '#E6E6E6';
+    return state ? state.color : '#e5e7eb';
   };
 
-  // Tooltip dinâmico com nome do estado
-  const tooltipContent = useMemo(() => {
-    if (!hoveredGeo) return null;
-    const uf = hoveredGeo.uf;
-    const state = brazilStates[uf];
-    return state ? `${state.name} (${uf})` : hoveredGeo.name || uf;
-  }, [hoveredGeo]);
+  // Obter estados a exibir no mapa com base no passo
+  const getFillColor = (geo) => {
+    const uf = geo.properties?.sigla;
+    if (!uf) return '#e5e7eb';
 
-  // Dados para o painel lateral
-  const panelContent = useMemo(() => {
-    if (currentStep === 'region' && selectedRegion) {
-      const states = getStatesByRegion(selectedRegion);
-      return {
-        title: regionData[selectedRegion]?.name || 'Região',
-        subtitle: `Escolha um estado para explorar`,
-        items: states.map(s => ({ type: 'state', id: s.uf, name: s.name, color: s.color })),
-        backAction: () => { setSelectedRegion(null); setCurrentStep('region'); }
-      };
+    const stateData = brazilStates[uf];
+    if (!stateData) return '#f3f4f6';
+
+    // Se região está selecionada, só estados dessa região têm cor
+    if (currentStep === 'region' && selectedRegion && stateData.region === selectedRegion) {
+      return stateData.color;
     }
-
-    if (currentStep === 'state' && selectedState) {
-      const state = brazilStates[selectedState];
-      if (!state) return null;
-      const allItems = [
-        ...state.cities.map(c => ({ type: 'city', name: c, id: `${state.uf}_city_${c}` })),
-        ...(state.attractions || []).map(a => ({ type: 'attraction', name: a, id: `${state.uf}_attr_${a}` }))
-      ];
-      return {
-        title: `Hotéis, História & Turismo em ${state.name}`,
-        subtitle: state.history?.substring(0, 100) + '...',
-        items: allItems,
-        backAction: () => { setSelectedState(null); setCurrentStep('region'); }
-      };
+    // Se estado está aberto, só ele é destacado
+    if (currentStep === 'state' && selectedState === uf) {
+      return stateData.color;
     }
-
-    if (currentStep === 'city' && selectedItem) {
-      // Extrair UF do ID (ex: SP_city_São Paulo → SP)
-      const uf = selectedItem.id.split('_')[0];
-      const state = brazilStates[uf];
-      const isCity = selectedItem.type === 'city';
-      const name = selectedItem.name;
-
-      return {
-        title: isCity ? `Hotéis & História em ${name}` : `Hotéis & Curiosidades em ${name}`,
-        subtitle: isCity ? `Cidade do estado de ${state.name}` : 'Atração turística local',
-        content: (
-          <div className="space-y-4">
-            {state && (
-              <>
-                <div>
-                  <h4 className="font-semibold text-gray-800">Hotéis próximos</h4>
-                  <p className="text-sm text-gray-600">Hotéis próximos a este local podem ser encontrados em sites como Booking.com ou Airbnb — buscando por "{name}, {state.name}".</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-800">{isCity ? 'História' : 'Curiosidades'}</h4>
-                  <p className="text-gray-700">{isCity ? state.history : state.curiosities}</p>
-                </div>
-              </>
-            )}
-            <button
-              onClick={() => { setCurrentStep('state'); setSelectedItem(null); }}
-              className="text-purple-600 flex items-center mt-4"
-            >
-              <i className="fas fa-arrow-left mr-1"></i> Voltar aos pontos turísticos
-            </button>
-          </div>
-        ),
-        backAction: () => { setSelectedItem(null); setCurrentStep('state'); }
-      };
-    }
-
-    return {
-      title: "Explore o Brasil",
-      subtitle: "Clique em uma região no mapa para começar",
-      content: <p className="text-gray-600">Selecione uma região colorida no mapa → depois um estado → e explore cidades e atrações com história, curiosidades e sugestões de hotéis.</p>
-    };
-  }, [currentStep, selectedRegion, selectedState, selectedItem]);
+    return '#e5e7eb';
+  };
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
-      <h2 className="text-2xl font-bold mb-2">Mapa Interativo do Brasil</h2>
-      <p className="text-sm text-gray-600 mb-4">
-        Clique em uma <strong>região</strong> colorida → depois em um <strong>estado</strong> → e explore <strong>cidades e atrações</strong> com história, curiosidades e dicas de hotéis.
-      </p>
+      <h2 className="text-2xl font-bold mb-2 text-gray-800">Explore o Brasil</h2>
+      <p className="text-gray-600 mb-4">Clique em uma <strong>região</strong> → depois em um <strong>estado</strong> → e descubra cidades, história e curiosidades.</p>
 
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Mapa */}
-        <div className="flex-1 relative">
+        <div className="flex-1 bg-gray-50 rounded-lg p-4">
           <ComposableMap
             projection="geoMercator"
             projectionConfig={{ scale: 850, center: [-55, -12] }}
             style={{ width: '100%', height: '500px', background: '#f9fafb', borderRadius: '8px' }}
           >
-            <Geographies geography={topojsonUrl}>
+            <Geographies geography={geoUrl}>
               {({ geographies }) =>
-                geographies.map(geo => {
-                  // Extrair UF do GeoJSON esperado (campo "sigla")
-                  const uf = geo.properties?.sigla || geo.id;
+                geographies.map((geo) => {
+                  const uf = geo.properties?.sigla;
                   const isActive = currentStep === 'region' && selectedRegion === brazilStates[uf]?.region;
-                  const isRegionSelected = selectedRegion && selectedRegion === brazilStates[uf]?.region;
-
                   return (
                     <Geography
                       key={geo.rsmKey}
                       geography={geo}
-                      onMouseEnter={() => setHoveredGeo({ uf, name: geo.properties?.nome || uf })}
-                      onMouseLeave={() => setHoveredGeo(null)}
                       onClick={() => {
+                        if (!uf) return;
+                        const region = brazilStates[uf]?.region;
                         if (currentStep === 'region') {
-                          const region = brazilStates[uf]?.region;
-                          if (region) {
-                            setSelectedRegion(region);
-                            setCurrentStep('state');
-                          }
+                          setSelectedRegion(region);
+                          setCurrentStep('state');
                         } else if (currentStep === 'state') {
-                          if (selectedState === uf) {
-                            // Já está aberto → fecha
-                            setSelectedState(null);
-                            setSelectedRegion(null);
-                            setCurrentStep('region');
-                          } else {
-                            setSelectedState(uf);
-                            setSelectedRegion(brazilStates[uf]?.region);
-                            setCurrentStep('city');
-                          }
+                          setSelectedState(uf);
+                          setCurrentStep('item');
                         }
                       }}
                       style={{
-                        default: {
-                          fill: isRegionSelected ? getColorByUf(uf) : '#E6E6E6',
-                          stroke: '#999',
-                          strokeWidth: 0.5,
-                          outline: 'none',
-                          cursor: 'pointer'
-                        },
-                        hover: {
-                          fill: isRegionSelected ? getColorByUf(uf) : '#FFB347',
-                          stroke: '#666',
-                          strokeWidth: 1,
-                          outline: 'none'
-                        }
+                        default: { fill: getFillColor(geo), stroke: '#9ca3af', strokeWidth: 0.5 },
+                        hover: { fill: '#ffedd5', stroke: '#f97316', strokeWidth: 1 },
                       }}
                     />
                   );
@@ -215,83 +126,150 @@ export default function MapaInterativoBrasil({ topojsonUrl = '/data/brazil-state
             </Geographies>
           </ComposableMap>
 
-          {/* Tooltip flutuante */}
-          {tooltipContent && (
-            <div
-              className="absolute bottom-4 left-4 bg-black text-white px-3 py-1 rounded text-sm"
-              style={{ pointerEvents: 'none' }}
-            >
-              {tooltipContent}
-            </div>
-          )}
-
-          {/* Legenda de regiões */}
-          <div className="absolute top-4 right-4 bg-white p-3 rounded shadow text-sm">
-            <h4 className="font-semibold mb-1">Regiões do Brasil</h4>
-            {Object.entries(regionData).map(([key, data]) => (
+          {/* Legenda */}
+          <div className="mt-4 p-3 bg-white rounded shadow-sm text-sm">
+            <h4 className="font-semibold mb-1">Regiões</h4>
+            {Object.entries(regionColors).map(([key, color]) => (
               <div key={key} className="flex items-center mb-1">
-                <span
-                  className="w-3 h-3 rounded mr-2 inline-block"
-                  style={{ backgroundColor: data.color }}
-                ></span>
-                {data.name}
+                <span className="w-3 h-3 rounded mr-2 inline-block" style={{ backgroundColor: color }}></span>
+                {key.charAt(0).toUpperCase() + key.slice(1)}
               </div>
             ))}
           </div>
         </div>
 
         {/* Painel lateral */}
-        <div className="w-full lg:w-96 bg-white border rounded-lg p-4 shadow">
-          <div className="flex justify-between items-start mb-3">
-            <h3 className="font-bold text-lg text-gray-800">{panelContent.title}</h3>
-            {panelContent.backAction && currentStep !== 'region' && (
-              <button
-                onClick={panelContent.backAction}
-                className="text-gray-500 hover:text-gray-700"
-                title="Voltar"
-              >
-                <i className="fas fa-arrow-left"></i>
-              </button>
+        <div className="w-full lg:w-96">
+          <div className="bg-white rounded-lg shadow p-5 sticky top-4">
+            {currentStep === 'region' && (
+              <>
+                <h3 className="font-bold text-lg">Escolha uma região</h3>
+                <p className="text-gray-600 text-sm mt-1">Clique em qualquer estado no mapa para selecionar sua região.</p>
+              </>
             )}
-          </div>
-          <p className="text-gray-600 text-sm mb-4">{panelContent.subtitle}</p>
 
-          {panelContent.content ? (
-            <div>{panelContent.content}</div>
-          ) : panelContent.items ? (
-            <div className="space-y-2 max-h-96 overflow-y-auto pr-2">
-              {panelContent.items.map((item, idx) => (
-                <div
-                  key={item.id}
-                  className={`p-3 rounded-lg border hover:shadow cursor-pointer transition ${
-                    item.color ? 'border-l-4' : ''
-                  }`}
-                  style={item.color ? { borderLeftColor: item.color } : {}}
-                  onClick={() => {
-                    if (item.type === 'state') {
-                      setSelectedState(item.id);
-                      setCurrentStep('city');
-                    } else {
-                      setSelectedItem(item);
-                      setCurrentStep('city');
-                    }
-                  }}
+            {currentStep === 'state' && selectedRegion && (
+              <>
+                <button
+                  onClick={() => { setCurrentStep('region'); setSelectedRegion(null); }}
+                  className="text-purple-600 flex items-center mb-3"
                 >
-                  <div className="font-medium text-gray-800">{item.name}</div>
-                  <div className="text-xs text-gray-500 mt-1">
-                    {item.type === 'state' ? 'Estado' : item.type === 'city' ? 'Hotéis & História' : 'Hotéis & Curiosidades'}
+                  <i className="fas fa-arrow-left mr-1"></i> Voltar às regiões
+                </button>
+                <h3 className="font-bold text-lg">
+                  {statesInRegion.length > 0 ? `Estados do ${selectedRegion === 'norte' ? 'Norte' : selectedRegion === 'nordeste' ? 'Nordeste' : selectedRegion === 'sudeste' ? 'Sudeste' : selectedRegion === 'sul' ? 'Sul' : 'Centro-Oeste'}` : 'Região'}
+                </h3>
+                <div className="mt-3 space-y-2 max-h-80 overflow-y-auto pr-1">
+                  {statesInRegion.map(({ uf, name, color }) => (
+                    <div
+                      key={uf}
+                      className="flex items-center p-3 rounded border-l-4 cursor-pointer hover:bg-gray-50"
+                      style={{ borderLeftColor: color }}
+                      onClick={() => {
+                        setSelectedState(uf);
+                        setCurrentStep('item');
+                      }}
+                    >
+                      <span className="font-medium text-gray-800">{name}</span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {currentStep === 'item' && selectedState && (
+              <>
+                <button
+                  onClick={() => { setCurrentStep('state'); setSelectedState(null); }}
+                  className="text-purple-600 flex items-center mb-3"
+                >
+                  <i className="fas fa-arrow-left mr-1"></i> Voltar aos estados
+                </button>
+                <div className="space-y-4">
+                  {(() => {
+                    const state = brazilStates[selectedState];
+                    if (!state) return <p>Estado não encontrado.</p>;
+                    return (
+                      <>
+                        <h3 className="font-bold text-lg">{state.name}</h3>
+                        <div className="text-sm text-gray-700">
+                          <p className="mb-3">{state.history.substring(0, 150)}{state.history.length > 150 ? '...' : ''}</p>
+                          <div className="bg-blue-50 p-3 rounded mb-3">
+                            <h4 className="font-semibold text-blue-800">Curiosidades</h4>
+                            <p className="text-blue-700 text-sm">{state.curiosities.substring(0, 120)}{state.curiosities.length > 120 ? '...' : ''}</p>
+                          </div>
+
+                          <h4 className="font-semibold mt-4 mb-2">Hotéis & Pontos Turísticos</h4>
+                          <div className="space-y-2">
+                            {state.cities.map(city => (
+                              <div
+                                key={`city-${city}`}
+                                className="p-2 bg-gray-100 rounded cursor-pointer hover:bg-gray-200"
+                                onClick={() => setSelectedItem({ type: 'city', name: city })}
+                              >
+                                <i className="fas fa-map-marker-alt text-red-500 mr-2"></i>
+                                {city} <span className="text-xs text-gray-500">(Hotéis)</span>
+                              </div>
+                            ))}
+                            {state.attractions?.map(attr => (
+                              <div
+                                key={`attr-${attr}`}
+                                className="p-2 bg-gray-100 rounded cursor-pointer hover:bg-gray-200"
+                                onClick={() => setSelectedItem({ type: 'attraction', name: attr })}
+                              >
+                                <i className="fas fa-monument text-blue-500 mr-2"></i>
+                                {attr}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+              </>
+            )}
+
+            {selectedItem && (
+              <>
+                <button
+                  onClick={() => setSelectedItem(null)}
+                  className="text-purple-600 flex items-center mb-3"
+                >
+                  <i className="fas fa-arrow-left mr-1"></i> Voltar aos pontos
+                </button>
+                <div className="space-y-4">
+                  <h3 className="font-bold text-lg">{selectedItem.name}</h3>
+                  <div className="text-gray-700">
+                    {selectedItem.type === 'city' ? (
+                      <>
+                        <p className="mb-2">Hotéis próximos a <strong>{selectedItem.name}</strong> podem ser encontrados em:</p>
+                        <ul className="list-disc pl-5 text-sm">
+                          <li>Booking.com ou Airbnb — busque por "{selectedItem.name}, {brazilStates[selectedState]?.name}"</li>
+                          <li>Hotéis com avaliação acima de 8.0 são recomendados</li>
+                        </ul>
+                        <div className="mt-4">
+                          <h4 className="font-semibold">Hotéis Recomendados (exemplo)</h4>
+                          <ul className="text-sm pl-5 list-disc">
+                            <li>Hotel {selectedItem.name} Palace ★★★★</li>
+                            <li>Pousada Cultural {selectedItem.name} ★★★</li>
+                          </ul>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <h4 className="font-semibold">Hotéis Próximos</h4>
+                        <p className="text-sm mb-3">Hotéis próximos à <strong>{selectedItem.name}</strong> são ideais para quem quer explorar a região com conforto.</p>
+                        <h4 className="font-semibold">Curiosidades</h4>
+                        <p>{brazilStates[selectedState]?.curiosities}</p>
+                      </>
+                    )}
                   </div>
                 </div>
-              ))}
-            </div>
-          ) : null}
+              </>
+            )}
+          </div>
         </div>
-      </div>
-
-      {/* Dica técnica */}
-      <div className="mt-6 p-3 bg-blue-50 border-l-4 border-blue-500 text-sm rounded">
-        <strong>Para desenvolvedores:</strong> Este componente requer o arquivo <code>/data/brazil-states.json</code> com estrutura contendo <code>properties.sigla</code> (ex: "SP"). 
-        Recomendamos usar o GeoJSON do IBGE via <a href="https://github.com/fabriciovergal/geodata-br" target="_blank" className="text-blue-600">geodata-br</a>.
       </div>
     </div>
   );
