@@ -117,7 +117,9 @@ const regionsDetailed = {
       }
     ]
   }
+};   
 
+const regionsDetailed = {   
   nordeste: {
     name: {
       pt: "Região Nordeste",
@@ -248,7 +250,8 @@ const regionsDetailed = {
   }
 };
 
-centro-oeste: {
+const regionsDetailed = {
+  centro-oeste: {
     name: {
       pt: "Região Centro-Oeste",
       en: "Central-West Region",
@@ -364,8 +367,242 @@ centro-oeste: {
         pt: "Mato Grosso do Sul foi criado em 1979 — e até hoje há confusão com Mato Grosso. Por isso, a placa do carro do estado leva o nome completo: ‘Mato Grosso do Sul’.",
         en: "Mato Grosso do Sul was created in 1979—and confusion with Mato Grosso persists. That’s why state license plates read the full name: ‘Mato Grosso do Sul’.",
         es: "Mato Grosso do Sul se creó en 1979 —y aún hoy hay confusión con Mato Grosso. Por eso, las placas del estado llevan el nombre completo: ‘Mato Grosso do Sul’."
+      } 
+    ]
+  }
+};  
+
+const regionsDetailed = {
+  sudeste: {
+    name: {
+      pt: "Região Sudeste",
+      en: "Southeast Region",
+      es: "Región Sudeste"
+    },
+    history: {
+      pt: `O Sudeste é o coração econômico, cultural e histórico do Brasil — berço da fundação de vilas coloniais, palco de revoluções, modernização urbana e inovação. A região abriga as quatro primeiras capitais do país: São Vicente (1532), Salvador (1549, até 1763), Rio de Janeiro (1763–1960) e Brasília (1960). Durante o ciclo do ouro, Minas Gerais tornou-se o centro financeiro da colônia; no século XIX, o café transformou São Paulo e o Rio de Janeiro em potências exportadoras; no século XX, a industrialização consolidou o Sudeste como motor do desenvolvimento nacional. Hoje, a região reúne megacidades, montanhas históricas, praias icônicas e uma rica herança do ciclo do café, da imigração e da modernidade.`,
+      en: `The Southeast is the economic, cultural, and historical heart of Brazil — the birthplace of colonial towns, the stage of revolutions, urban modernization, and innovation. The region hosts the country’s first four capitals: São Vicente (1532), Salvador (1549–1763), Rio de Janeiro (1763–1960), and Brasília (1960). During the gold cycle, Minas Gerais became the colony’s financial center; in the 19th century, coffee turned São Paulo and Rio de Janeiro into export powerhouses; in the 20th century, industrialization cemented the Southeast as the engine of national development. Today, the region combines megacities, historic mountains, iconic beaches, and a rich legacy of coffee, immigration, and modernism.`,
+      es: `El Sudeste es el corazón económico, cultural e histórico de Brasil — cuna de pueblos coloniales, escenario de revoluciones, modernización urbana e innovación. La región alberga las cuatro primeras capitales del país: São Vicente (1532), Salvador (1549–1763), Río de Janeiro (1763–1960) y Brasilia (1960). Durante el ciclo del oro, Minas Gerais se convirtió en el centro financiero de la colonia; en el siglo XIX, el café transformó a São Paulo y Río de Janeiro en potencias exportadoras; en el siglo XX, la industrialización consolidó al Sudeste como motor del desarrollo nacional. Hoy, la región reúne megaciudades, montañas históricas, playas icónicas y una rica herencia del ciclo del café, la inmigración y la modernidad.`
+    },
+    attractions: [
+      {
+        name: { pt: "Estrada Real", en: "Royal Road", es: "Camino Real" },
+        location: "MG/SP/RJ",
+        description: {
+          pt: "Rota histórica criada no século XVIII para transportar ouro, diamantes e mantimentos entre Minas Gerais, Rio de Janeiro e São Paulo. Hoje é um dos maiores roteiros turísticos do Brasil, unindo cidades históricas, natureza e gastronomia.",
+          en: "A historic route created in the 18th century to transport gold, diamonds, and supplies between Minas Gerais, Rio de Janeiro, and São Paulo. Today, it’s one of Brazil’s largest tourist circuits, connecting historic towns, nature, and gastronomy.",
+          es: "Ruta histórica creada en el siglo XVIII para transportar oro, diamantes y provisiones entre Minas Gerais, Río de Janeiro y São Paulo. Hoy es uno de los circuitos turísticos más grandes de Brasil, uniendo ciudades históricas, naturaleza y gastronomía."
+        }
+      },
+      {
+        name: { pt: "Cristo Redentor e Pão de Açúcar", en: "Christ the Redeemer & Sugarloaf Mountain", es: "Cristo Redentor y Pan de Azúcar" },
+        location: "RJ",
+        description: {
+          pt: "Símbolos mundiais do Rio de Janeiro. O Cristo Redentor (1931), no Corcovado, é uma das Novas Sete Maravilhas do Mundo. O Pão de Açúcar, com seu bondinho centenário, oferece uma das vistas mais espetaculares do planeta.",
+          en: "Global icons of Rio de Janeiro. Christ the Redeemer (1931), atop Corcovado, is one of the New Seven Wonders of the World. Sugarloaf, with its century-old cable car, offers one of Earth’s most breathtaking views.",
+          es: "Símbolos mundiales de Río de Janeiro. El Cristo Redentor (1931), en el Corcovado, es una de las Nuevas Siete Maravillas del Mundo. El Pan de Azúcar, con su teleférico centenario, ofrece una de las vistas más impresionantes del planeta."
+        }
+      },
+      {
+        name: { pt: "Cidades Históricas de Minas Gerais", en: "Historic Cities of Minas Gerais", es: "Ciudades Históricas de Minas Gerais" },
+        location: "MG",
+        description: {
+          pt: "Conjunto de cidades barrocas tombadas pela UNESCO, como Ouro Preto, Mariana e Diamantina. Guardam o legado do Ciclo do Ouro, da Inconfidência Mineira e do gênio artístico de Aleijadinho.",
+          en: "A collection of Baroque towns designated UNESCO World Heritage Sites, such as Ouro Preto, Mariana, and Diamantina. They preserve the legacy of the Gold Cycle, the Inconfidência Mineira, and the artistic genius of Aleijadinho.",
+          es: "Conjunto de ciudades barrocas declaradas Patrimonio de la Humanidad por la UNESCO, como Ouro Preto, Mariana y Diamantina. Conservan el legado del Ciclo del Oro, la Inconfidencia Mineira y el genio artístico de Aleijadinho."
+        }
+      },
+      {
+        name: { pt: "Avenida Paulista e MASP", en: "Paulista Avenue & MASP", es: "Avenida Paulista y MASP" },
+        location: "SP",
+        description: {
+          pt: "A avenida mais famosa do Brasil, símbolo da modernidade paulista. O MASP, com seu vão livre e acervo internacional, é marco da arquitetura moderna e da cultura brasileira.",
+          en: "Brazil’s most famous avenue, symbol of São Paulo’s modernity. MASP, with its open undercroft and international collection, is a landmark of modern architecture and Brazilian culture.",
+          es: "La avenida más famosa de Brasil, símbolo de la modernidad paulista. El MASP, con su vano libre y acervo internacional, es hito de la arquitectura moderna y la cultura brasileña."
+        }
+      },
+      {
+        name: { pt: "Convento da Penha", en: "Penha Convent", es: "Convento de la Peña" },
+        location: "ES",
+        description: {
+          pt: "Um dos santuários religiosos mais antigos e importantes do Brasil, construído no século XVI sobre um penhasco em Vila Velha. Oferece vista panorâmica da Baía de Vitória e é palco da segunda maior festa religiosa do país.",
+          en: "One of Brazil’s oldest and most important religious sanctuaries, built in the 16th century atop a cliff in Vila Velha. It offers panoramic views of Vitória Bay and hosts the country’s second-largest religious festival.",
+          es: "Uno de los santuarios religiosos más antiguos e importantes de Brasil, construido en el siglo XVI sobre un acantilado en Vila Velha. Ofrece vista panorámica de la Bahía de Vitória y es sede de la segunda fiesta religiosa más grande del país."
+        }
+      },
+      {
+        name: { pt: "Litoral do Sudeste", en: "Southeast Coastline", es: "Litoral del Sudeste" },
+        location: "RJ/SP/ES",
+        description: {
+          pt: "Mais de 1.000 km de praias que vão do extremo sul do Espírito Santo até o norte de São Paulo — de Guarapari e Ilha Grande a Ubatuba e Ilhabela. Combina vida urbana (Copacabana, Ipanema), natureza preservada (Paraty, restingas) e cultura caiçara.",
+          en: "Over 1,000 km of coastline stretching from southern Espírito Santo to northern São Paulo — from Guarapari and Ilha Grande to Ubatuba and Ilhabela. Blends urban life (Copacabana, Ipanema), preserved nature (Paraty, restingas), and caiçara culture.",
+          es: "Más de 1.000 km de litoral desde el sur de Espírito Santo hasta el norte de São Paulo —de Guarapari e Ilha Grande a Ubatuba e Ilhabela. Combina vida urbana (Copacabana, Ipanema), naturaleza preservada (Paraty, restingas) y cultura caiçara."
+        }
+      },
+      {
+        name: { pt: "Serra da Mantiqueira", en: "Mantiqueira Mountains", es: "Serra de la Mantiqueira" },
+        location: "MG/SP/RJ",
+        description: {
+          pt: "Cadeia montanhosa que abriga o Pico da Bandeira (2.892 m), terceiro ponto mais alto do Brasil. É refúgio de ecoturismo, gastronomia de altitude (queijos, vinhos) e cidades charmosas como Campos do Jordão e Gonçalves.",
+          en: "A mountain range home to Pico da Bandeira (2,892 m), Brazil’s third-highest peak. A haven for ecotourism, high-altitude gastronomy (cheeses, wines), and charming towns like Campos do Jordão and Gonçalves.",
+          es: "Cadena montañosa que alberga el Pico da Bandeira (2.892 m), tercer punto más alto de Brasil. Refugio de ecoturismo, gastronomía de altura (quesos, vinos) y ciudades encantadoras como Campos do Jordão y Gonçalves."
+        }
+      }
+    ],
+    curiosities: [
+      {
+        pt: "O Sudeste concentra 43% da população brasileira em apenas 10,8% do território nacional — é a região mais densamente povoada do país.",
+        en: "The Southeast concentrates 43% of Brazil’s population in just 10.8% of the national territory — it’s the country’s most densely populated region.",
+        es: "El Sudeste concentra el 43% de la población brasileña en apenas el 10,8% del territorio nacional —es la región más densamente poblada del país."
+      },
+      {
+        pt: "São Paulo é a única cidade do mundo que tem o maior número de restaurantes japoneses fora do Japão — são mais de 800 casas de culinária oriental.",
+        en: "São Paulo is the only city in the world with the largest number of Japanese restaurants outside Japan — over 800 establishments serving Asian cuisine.",
+        es: "São Paulo es la única ciudad del mundo con más restaurantes japoneses fuera de Japón —más de 800 establecimientos de cocina asiática."
+      },
+      {
+        pt: "O Rio de Janeiro foi a única capital europeia fora da Europa: de 1808 a 1821, durante a fuga da corte portuguesa de Napoleão, o Rio foi a sede do Império Português.",
+        en: "Rio de Janeiro was the only European capital outside Europe: from 1808 to 1821, during the Portuguese court’s flight from Napoleon, Rio served as the capital of the Portuguese Empire.",
+        es: "Río de Janeiro fue la única capital europea fuera de Europa: de 1808 a 1821, durante la fuga de la corte portuguesa de Napoleón, Río fue la sede del Imperio Portugués."
+      },
+      {
+        pt: "A Semana de Arte Moderna de 1922, em São Paulo, foi o marco do Modernismo brasileiro — e aconteceu no Theatro Municipal, inspirado na Ópera de Paris.",
+        en: "The 1922 Modern Art Week in São Paulo marked the birth of Brazilian Modernism — and took place at the Municipal Theater, inspired by the Paris Opera.",
+        es: "La Semana de Arte Moderno de 1922 en São Paulo marcó el nacimiento del Modernismo brasileño —y ocurrió en el Teatro Municipal, inspirado en la Ópera de París."
+      },
+      {
+        pt: "A moqueca capixaba (ES) não leva dendê — é feita com urucum e azeite. Já a baiana leva dendê e leite de coco. A rivalidade é séria!",
+        en: "Capixaba moqueca (ES) uses annatto and olive oil—not palm oil. Bahian moqueca uses palm oil and coconut milk. The rivalry is real!",
+        es: "La moqueca capixaba (ES) se prepara con achiote y aceite —no con dendé. La bahiana lleva dendé y leche de coco. ¡La rivalidad es seria!"
+      },
+      {
+        pt: "O Pico da Bandeira (ES/MG) foi, por décadas, considerado o ponto mais alto do Brasil — até a medição precisa do Pico da Neblina, na Amazônia, em 1965.",
+        en: "Pico da Bandeira (ES/MG) was long considered Brazil’s highest point—until the precise measurement of Pico da Neblina in the Amazon in 1965.",
+        es: "El Pico da Bandeira (ES/MG) fue durante décadas considerado el punto más alto de Brasil —hasta la medición precisa del Pico da Neblina en la Amazonía, en 1965."
+      },
+      {
+        pt: "O Museu do Amanhã (RJ), projetado por Santiago Calatrava, é inteiramente dedicado à ciência, sustentabilidade e futuro da humanidade — e foi construído para as Olimpíadas de 2016.",
+        en: "The Museum of Tomorrow (RJ), designed by Santiago Calatrava, is entirely dedicated to science, sustainability, and humanity’s future—and built for the 2016 Olympics.",
+        es: "El Museo del Mañana (RJ), diseñado por Santiago Calatrava, está dedicado por completo a la ciencia, la sostenibilidad y el futuro de la humanidad —y fue construido para las Olimpíadas de 2016."
+      },
+      {
+        pt: "A Revolução Constitucionalista de 1932 (SP) é o único movimento armado com feriado estadual — 9 de julho é comemorado apenas em São Paulo.",
+        en: "The 1932 Constitutionalist Revolution (SP) is the only armed movement with a state holiday—July 9 is celebrated only in São Paulo.",
+        es: "La Revolución Constitucionalista de 1932 (SP) es el único movimiento armado con feriado estatal —el 9 de julio se celebra solo en São Paulo."
       }
     ]
   }
-  // demais regiões serão adicionadas conforme você enviar os arquivos
+};
+
+const regionsDetailed = {
+  sul: {
+    name: {
+      pt: "Região Sul",
+      en: "Southern Region",
+      es: "Región Sur"
+    },
+    history: {
+      pt: `A Região Sul é a mais europeia do Brasil — resultado de intensa imigração alemã, italiana, polonesa, ucraniana e açoriana, que moldou sua cultura, arquitetura, gastronomia e identidade. Antes dos europeus, era habitada por povos indígenas como os Guarani, Kaingang e Xokleng. Durante o século XIX, o ciclo do tropeirismo e a pecuária criaram o gaúcho, símbolo de liberdade e bravura. A Revolução Farroupilha (1835–1845) marcou profundamente o espírito de resistência e autonomia da região. Hoje, o Sul combina tradição com modernidade: é líder em agronegócio, indústria, tecnologia e turismo de natureza — preservando vinhedos, cânions, neves naturais e festas que reúnem milhões de pessoas.`,
+      en: `The Southern Region is the most European-influenced in Brazil — shaped by massive German, Italian, Polish, Ukrainian, and Azorean immigration, which forged its culture, architecture, cuisine, and identity. Before European arrival, it was home to Indigenous peoples like the Guarani, Kaingang, and Xokleng. In the 19th century, the tropeiro trade routes and cattle ranching gave rise to the gaúcho, symbol of freedom and bravery. The Farroupilha Revolution (1835–1845) deeply marked the region’s spirit of resistance and autonomy. Today, the South balances tradition and modernity — leading in agribusiness, industry, technology, and nature tourism — preserving vineyards, canyons, natural snowfalls, and festivals that draw millions.`,
+      es: `La Región Sur es la más europea de Brasil — resultado de intensa inmigración alemana, italiana, polaca, ucraniana y azoriana, que moldeó su cultura, arquitectura, gastronomía e identidad. Antes de los europeos, estaba habitada por pueblos indígenas como los Guaraní, Kaingang y Xokleng. Durante el siglo XIX, las rutas de los tropeiros y la ganadería dieron origen al gaucho, símbolo de libertad y valentía. La Revolución Farroupilha (1835–1845) marcó profundamente el espíritu de resistencia y autonomía regional. Hoy, el Sur combina tradición y modernidad — lidera en agroindustria, industria, tecnología y turismo de naturaleza — preservando viñedos, cañones, nieves naturales y fiestas que reúnen a millones.`
+    },
+    attractions: [
+      {
+        name: { pt: "Cânion Itaimbezinho", en: "Itaimbezinho Canyon", es: "Cañón Itaimbezinho" },
+        location: "RS/SC",
+        description: {
+          pt: "Localizado no Parque Nacional dos Aparados da Serra, é um dos cânions mais impressionantes da América do Sul, com paredes de até 720 metros de profundidade. Trilhas e mirantes oferecem vistas espetaculares do encontro entre o planalto e o mar de nuvens.",
+          en: "Located in the Aparados da Serra National Park, it’s one of South America’s most impressive canyons, with cliffs up to 720 meters deep. Trails and viewpoints offer breathtaking views where the plateau meets the sea of clouds.",
+          es: "Ubicado en el Parque Nacional de los Aparados da Serra, es uno de los cañones más impresionantes de Sudamérica, con paredes de hasta 720 metros de profundidad. Senderos y miradores ofrecen vistas espectaculares donde el planalto se encuentra con el mar de nubes."
+        }
+      },
+      {
+        name: { pt: "Serra Catarinense e as Neves", en: "Serra Catarinense and Snowfalls", es: "Serra Catarinense y las nieves" },
+        location: "SC",
+        description: {
+          pt: "Único lugar do Brasil onde neva com frequência. Cidades como São Joaquim e Urupema registram temperaturas abaixo de -10°C no inverno. A região também produz vinhos de altitude premiados internacionalmente.",
+          en: "The only place in Brazil with frequent natural snowfall. Cities like São Joaquim and Urupema reach temperatures below -10°C in winter. The region also produces internationally awarded high-altitude wines.",
+          es: "Único lugar de Brasil donde nieva con frecuencia. Ciudades como São Joaquim y Urupema registran temperaturas bajo los -10°C en invierno. La región también produce vinos de altitud galardonados internacionalmente."
+        }
+      },
+      {
+        name: { pt: "Caminho das Tropas", en: "Tropeiro Trail", es: "Camino de los Troperos" },
+        location: "PR/SC/RS",
+        description: {
+          pt: "Rota histórica usada pelos tropeiros no século XVIII para transportar gado do Rio Grande do Sul até Sorocaba (SP). Deu origem a cidades como Lapa, Curitiba e São Leopoldo — e à cultura do chimarrão, do pinhão assado e do feijão tropeiro.",
+          en: "Historic route used by tropeiros in the 18th century to drive cattle from Rio Grande do Sul to Sorocaba (SP). It gave rise to cities like Lapa, Curitiba, and São Leopoldo — and the culture of chimarrão, roasted pine nuts, and feijão tropeiro.",
+          es: "Ruta histórica usada por los troperos en el siglo XVIII para conducir ganado desde Río Grande do Sul hasta Sorocaba (SP). Dio origen a ciudades como Lapa, Curitiba y São Leopoldo — y a la cultura del chimarrão, piñón asado y feijão tropeiro."
+        }
+      },
+      {
+        name: { pt: "Vale Europeu", en: "European Valley", es: "Valle Europeo" },
+        location: "SC/PR",
+        description: {
+          pt: "Região formada por cidades como Pomerode, Blumenau, Joinville e Treze Tílias — onde a arquitetura enxaimel, as festas típicas (Oktoberfest, Festa do Colono) e o idioma alemão ainda são vivos. É um dos maiores legados culturais da imigração no Brasil.",
+          en: "Region formed by cities like Pomerode, Blumenau, Joinville, and Treze Tílias — where half-timbered architecture, traditional festivals (Oktoberfest, Festa do Colono), and the German language are still alive. It’s one of Brazil’s greatest cultural legacies of immigration.",
+          es: "Región formada por ciudades como Pomerode, Blumenau, Joinville y Treze Tílias — donde la arquitectura de entramado, fiestas típicas (Oktoberfest, Festa do Colono) y el idioma alemán aún están vivos. Es uno de los mayores legados culturales de la inmigración en Brasil."
+        }
+      },
+      {
+        name: { pt: "Fronteira das Três Águas", en: "Three Waters Border", es: "Frontera de las Tres Aguas" },
+        location: "PR",
+        description: {
+          pt: "Ponto onde as bacias do Iguaçu, Paraná e Paraguai se encontram — essenciais para a geração de energia (Itaipu), navegação e biodiversidade. A região abriga Foz do Iguaçu, um dos principais destinos turísticos do mundo.",
+          en: "Point where the Iguaçu, Paraná, and Paraguay river basins meet — essential for energy (Itaipu), navigation, and biodiversity. The region hosts Foz do Iguaçu, one of the world’s top tourist destinations.",
+          es: "Punto donde se encuentran las cuencas de los ríos Iguaçu, Paraná y Paraguay — esenciales para generación de energía (Itaipú), navegación y biodiversidad. La región alberga Foz do Iguaçu, uno de los destinos turísticos más importantes del mundo."
+        }
+      },
+      {
+        name: { pt: "Tradição Gaúcha e o Piquete Farroupilha", en: "Gaúcho Tradition and Farroupilha Encampment", es: "Tradición Gaucha y el Piquete Farroupilha" },
+        location: "RS",
+        description: {
+          pt: "Durante a Semana Farroupilha (setembro), milhares de famílias montam acampamentos temáticos (piquetes) em parques de todo o RS, recriando o modo de vida dos farrapos: chimarrão, churrasco de chão, música nativista e danças tradicionais.",
+          en: "During Farroupilha Week (September), thousands of families set up themed encampments (piquetes) in parks across RS, recreating the farroupilha lifestyle: chimarrão, ground barbecue, nativist music, and traditional dances.",
+          es: "Durante la Semana Farroupilha (septiembre), miles de familias montan campamentos temáticos (piquetes) en parques de todo RS, recreando el estilo de vida farroupilha: chimarrão, asado en el piso, música nativista y danzas tradicionales."
+        }
+      }
+    ],
+    curiosities: [
+      {
+        pt: "Santa Catarina é o único estado brasileiro onde neva com frequência — e a menor temperatura registrada foi -17,8°C em Urupema.",
+        en: "Santa Catarina is the only Brazilian state with frequent snowfall—and the lowest recorded temperature was -17.8°C in Urupema.",
+        es: "Santa Catarina es el único estado brasileño donde nieva con frecuencia —y la temperatura más baja registrada fue -17,8°C en Urupema."
+      },
+      {
+        pt: "Os golfinhos de Laguna (SC) ajudam pescadores há mais de 100 anos — um fenômeno único no mundo, transmitido de geração em geração entre humanos e animais.",
+        en: "The dolphins of Laguna (SC) have helped fishermen for over 100 years—a unique phenomenon in the world, passed down across generations of humans and animals.",
+        es: "Los delfines de Laguna (SC) ayudan a pescadores desde hace más de 100 años —fenómeno único en el mundo, transmitido de generación en generación entre humanos y animales."
+      },
+      {
+        pt: "A Ponte Hercílio Luz (SC) foi reaberta em 2019 após 37 anos de restauração — e é a maior ponte pênsil em balanço do Brasil.",
+        en: "The Hercílio Luz Bridge (SC) reopened in 2019 after 37 years of restoration—and is Brazil’s longest balanced suspension bridge.",
+        es: "El Puente Hercílio Luz (SC) reabrió en 2019 tras 37 años de restauración —y es el puente colgante más largo de Brasil."
+      },
+      {
+        pt: "A Oktoberfest de Blumenau (SC) é a maior festa alemã das Américas — com mais de 700 mil visitantes por edição.",
+        en: "Blumenau’s Oktoberfest (SC) is the largest German festival in the Americas—with over 700,000 visitors per edition.",
+        es: "La Oktoberfest de Blumenau (SC) es la fiesta alemana más grande de las Américas —con más de 700 mil visitantes por edición."
+      },
+      {
+        pt: "O Rio Grande do Sul teve uma república independente: a República Rio-Grandense (1836–1845), durante a Revolução Farroupilha.",
+        en: "Rio Grande do Sul once had its own independent republic: the Rio-Grandense Republic (1836–1845), during the Farroupilha Revolution.",
+        es: "Río Grande do Sul tuvo una república independiente: la República Rio-Grandense (1836–1845), durante la Revolución Farroupilha."
+      },
+      {
+        pt: "O Paraná abriga a Usina de Itaipu, que gera energia suficiente para abastecer 15% do Brasil e 90% do Paraguai.",
+        en: "Paraná hosts the Itaipu Dam, which generates enough energy to power 15% of Brazil and 90% of Paraguay.",
+        es: "Paraná alberga la represa de Itaipú, que genera energía suficiente para abastecer el 15% de Brasil y el 90% de Paraguay."
+      },
+      {
+        pt: "A cidade de Joinville (SC) tem a única escola do Balé Bolshoi fora da Rússia — e realiza o maior festival de dança do mundo.",
+        en: "Joinville (SC) hosts the only Bolshoi Ballet School outside Russia—and holds the world’s largest dance festival.",
+        es: "Joinville (SC) alberga la única escuela del Ballet Bolshoi fuera de Rusia —y realiza el festival de danza más grande del mundo."
+      },
+      {
+        pt: "A cultura do chimarrão foi trazida pelos tropeiros e hoje é símbolo de união, hospitalidade e identidade sulista.",
+        en: "The chimarrão tradition was brought by tropeiros and is now a symbol of union, hospitality, and Southern identity.",
+        es: "La tradición del chimarrão fue traída por los troperos y hoy es símbolo de unión, hospitalidad e identidad sureña."
+      }
+    ]
+  }
 };
