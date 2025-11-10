@@ -355,7 +355,6 @@ function initializeAnimations() {
   });
 }
 
-// Show state step
 // Show state step — agora com dados regionais detalhados
 function showStateStep(regionKey) {
   const region = regionData[regionKey] || regionData.norte;
@@ -707,3 +706,107 @@ function observeElements() {
 document.addEventListener('DOMContentLoaded', observeElements);
 // Initialize scroll animations
 document.addEventListener('DOMContentLoaded', observeElements);
+
+let interactiveMap = null;
+
+function initInteractiveMap() {
+  if (interactiveMap) return; // Já inicializado
+
+  // Inicializa o mapa centrado no Brasil
+  interactiveMap = L.map('interactive-map').setView([-15.78, -47.93], 4);
+
+  // Base map: OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>',
+    maxZoom: 8
+  }).addTo(interactiveMap);
+
+  // Estilos
+  const defaultStyle = {
+    fillColor: '#4f46e5',
+    weight: 1,
+    opacity: 1,
+    color: '#fff',
+    dashArray: '3',
+    fillOpacity: 0.6
+  };
+
+  const highlightStyle = {
+    weight: 2,
+    color: '#2563eb',
+    dashArray: '',
+    fillOpacity: 0.8,
+    fillColor: '#60a5fa'
+  };
+
+  // Carrega o GeoJSON
+  fetch('brazil-states.geojson')
+    .then(response => response.json())
+    .then(data => {
+      const geoLayer = L.geoJSON(data, {
+        style: () => defaultStyle,
+        onEachFeature: (feature, layer) => {
+          const uf = feature.properties.sigla; // Ex: "MG", "SP"
+          const stateData = brazilStates[uf];
+          if (!stateData) return;
+
+          // Tooltip ao passar o mouse
+          layer.bindTooltip(`<strong>${stateData.name}</strong><br/>${stateData.cities.length} cidades`, {
+            permanent: false,
+            direction: 'auto'
+          });
+
+          // Tooltip persistente móvel (opcional)
+          // layer.bindPopup(`<h3>${stateData.name}</h3><p>${stateData.history.substring(0, 100)}...</p>`);
+
+          // Clique: mostra tela de cidades
+          layer.on('click', () => {
+            showCityStep(uf);
+
+            // Destaque visual breve
+            geoLayer.setStyle(feature => 
+              feature.properties.sigla === uf ? highlightStyle : defaultStyle
+            );
+            setTimeout(() => geoLayer.setStyle(() => defaultStyle), 1500);
+          });
+
+          // Hover in/out
+          layer.on('mouseover', () => layer.setStyle(highlightStyle));
+          layer.on('mouseout', () => layer.setStyle(defaultStyle));
+        }
+      }).addTo(interactiveMap);
+
+      // Ajusta zoom para cobrir todo o Brasil
+      interactiveMap.fitBounds(geoLayer.getBounds());
+    })
+    .catch(err => {
+      console.error('Erro ao carregar GeoJSON:', err);
+      document.getElementById('interactive-map').innerHTML = `
+        <div class="flex items-center justify-center h-full bg-gray-100 text-red-600">
+          <i class="fas fa-exclamation-triangle mr-2"></i>
+          Erro ao carregar o mapa. Verifique se <code>brazil-states.geojson</code> está na pasta.
+        </div>
+      `;
+    });
+}
+
+// Inicializa após o DOM carregar
+document.addEventListener('DOMContentLoaded', () => {
+  initializeAnimations();
+  loadNearbyLocations();
+  setupLanguageSelector();
+  initInteractiveMap(); // 🚀 Nova linha
+});
+
+// ✅ Leitura de parâmetro ?state=MG ou ?region=norte
+document.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const stateParam = urlParams.get('state');
+  const regionParam = urlParams.get('region');
+
+  if (stateParam && brazilStates[stateParam]) {
+    setTimeout(() => showCityStep(stateParam), 400);
+  } else if (regionParam && regionData[regionParam]) {
+    setTimeout(() => showStateStep(regionParam), 400);
+  }
+});
