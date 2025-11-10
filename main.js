@@ -1,65 +1,4 @@
 // Location data with multilingual content
-const locations = {
-    theatro: {
-        name: {
-            pt: "Theatro Municipal",
-            en: "Municipal Theater",
-            es: "Teatro Municipal"
-        },
-        description: {
-            pt: "Construído em 1909, este teatro é um dos mais importantes palcos culturais da cidade. Sua arquitetura neoclássica e seu interior ornamentado contam a história da vida cultural da região. Já recebeu apresentações de artistas renomados e é considerado patrimônio histórico.",
-            en: "Built in 1909, this theater is one of the most important cultural venues in the city. Its neoclassical architecture and ornate interior tell the story of the region's cultural life. It has hosted performances by renowned artists and is considered a historical heritage site.",
-            es: "Construido en 1909, este teatro es uno de los escenarios culturales más importantes de la ciudad. Su arquitectura neoclásica y su interior ornamentado cuentan la historia de la vida cultural de la región. Ha recibido presentaciones de artistas renombrados y es considerado patrimonio histórico."
-        },
-        type: {
-            pt: "Patrimônio Cultural",
-            en: "Cultural Heritage",
-            es: "Patrimonio Cultural"
-        },
-        icon: "fas fa-theater-masks",
-        coordinates: { lat: -19.9167, lng: -43.9345 }
-    },
-    mercado: {
-        name: {
-            pt: "Mercado Central",
-            en: "Central Market",
-            es: "Mercado Central"
-        },
-        description: {
-            pt: "Fundado em 1929, o Mercado Central é um dos pontos comerciais mais tradicionais da cidade. Com mais de 400 lojas, oferece desde produtos locais até artesanato. A estrutura em ferro e vidro é um exemplo da arquitetura industrial do início do século XX.",
-            en: "Founded in 1929, the Central Market is one of the city's most traditional commercial points. With over 400 stores, it offers everything from local products to handicrafts. The iron and glass structure is an example of early 20th century industrial architecture.",
-            es: "Fundado en 1929, el Mercado Central es uno de los puntos comerciales más tradicionales de la ciudad. Con más de 400 tiendas, ofrece desde productos locales hasta artesanías. La estructura de hierro y vidrio es un ejemplo de la arquitetura industrial del siglo XX."
-        },
-        type: {
-            pt: "Centro Comercial",
-            en: "Commercial Center",
-            es: "Centro Comercial"
-        },
-        icon: "fas fa-shopping-basket",
-        coordinates: { lat: -19.9200, lng: -43.9370 }
-    },
-    catedral: {
-        name: {
-            pt: "Catedral Metropolitana",
-            en: "Metropolitan Cathedral",
-            es: "Catedral Metropolitana"
-        },
-        description: {
-            pt: "Inaugurada em 1932, a Catedral Metropolitana é um dos principais templos religiosos da cidade. Sua arquitetura gótica inspirada nas catedrais europeias impressiona pelos vitrais coloridos e pela imponente fachada. É um importante centro de peregrinação.",
-            en: "Inaugurated in 1932, the Metropolitan Cathedral is one of the main religious temples in the city. Its Gothic architecture inspired by European cathedrals impresses with its colorful stained glass windows and imposing facade. It is an important pilgrimage center.",
-            es: "Inaugurada en 1932, la Catedral Metropolitana es uno de los principales templos religiosos de la ciudad. Su arquitectura gótica inspirada en las catedrales europeias impresiona por sus vitrales de colores y su imponente fachada. Es un importante centro de peregrinación."
-        },
-        type: {
-            pt: "Patrimônio Religioso",
-            en: "Religious Heritage",
-            es: "Patrimonio Religioso"
-        },
-        icon: "fas fa-church",
-        coordinates: { lat: -19.9150, lng: -43.9380 }
-    }
-};
-
-// Brazilian States Data - ENRICHED WITH PDF CONTENT
 const brazilStates = {
   'AC': {
     name: 'Acre',
@@ -417,13 +356,60 @@ function initializeAnimations() {
 }
 
 // Show state step
+// Show state step — agora com dados regionais detalhados
 function showStateStep(regionKey) {
   const region = regionData[regionKey] || regionData.norte;
   document.getElementById('region-title').textContent = region.name;
   document.getElementById('region-icon').className = `${region.icon} text-3xl text-purple-600`;
 
-  // Filter states
-  const statesInRegion = Object.entries(brazilStates).filter(([uf, data]) => 
+  // ✅ Exibe conteúdo detalhado da região (história, atrações, curiosidades)
+  if (regionsDetailed && regionsDetailed[regionKey]) {
+    const detail = regionsDetailed[regionKey];
+    const name = detail.name[currentLanguage] || detail.name.pt;
+    const history = detail.history[currentLanguage] || detail.history.pt;
+
+    let attractionsHTML = '';
+    if (detail.attractions && detail.attractions.length) {
+      attractionsHTML = `
+        <div class="bg-blue-50 p-5 rounded-xl mb-6">
+          <h4 class="font-bold text-blue-800 mb-3">${currentLanguage === 'pt' ? '📍 Pontos Turísticos Regionais' : currentLanguage === 'en' ? '📍 Regional Tourist Attractions' : '📍 Atracciones Turísticas Regionales'}</h4>
+          <ul class="space-y-2">
+            ${detail.attractions.map(attr => {
+              const attrName = attr.name[currentLanguage] || attr.name.pt;
+              const attrDesc = attr.description[currentLanguage] || attr.description.pt;
+              return `<li class="flex items-start">
+                <i class="fas fa-map-marker-alt text-blue-500 mt-1 mr-2"></i>
+                <span><strong>${attrName}</strong> — ${attrDesc}</span>
+              </li>`;
+            }).join('')}
+          </ul>
+        </div>`;
+    }
+
+    let curiositiesHTML = '';
+    if (detail.curiosities && detail.curiosities.length) {
+      curiositiesHTML = `
+        <div class="bg-amber-50 p-5 rounded-xl mb-6">
+          <h4 class="font-bold text-amber-800 mb-3">${currentLanguage === 'pt' ? '✨ Curiosidades' : currentLanguage === 'en' ? '✨ Curiosities' : '✨ Curiosidades'}</h4>
+          <ul class="list-disc pl-5 space-y-1 text-amber-700">
+            ${detail.curiosities.map(c => {
+              return `<li>${c[currentLanguage] || c.pt}</li>`;
+            }).join('')}
+          </ul>
+        </div>`;
+    }
+
+    document.getElementById('regionMapPlaceholder').innerHTML = `
+      <h3 class="text-2xl font-bold text-gray-800 mb-4">${name}</h3>
+      <p class="text-gray-700 mb-6 leading-relaxed">${history}</p>
+      ${attractionsHTML}
+      ${curiositiesHTML}
+      <div class="w-full h-px bg-gray-200 my-6"></div>
+    `;
+  }
+
+  // Lista os estados da região
+  const statesInRegion = Object.entries(brazilStates).filter(([uf, data]) =>
     regionKey === 'all' ? true : data.region === regionKey
   );
 
@@ -442,83 +428,10 @@ function showStateStep(regionKey) {
     grid.appendChild(card);
   });
 
+  // Alterna visibilidade
   document.getElementById('step-region').classList.add('hidden');
   document.getElementById('step-state').classList.remove('hidden');
   document.getElementById('step-city').classList.add('hidden');
-}
-
-// Show city step
-function showCityStep(uf) {
-  const state = brazilStates[uf];
-  if (!state) return;
-
-  document.getElementById('state-title').textContent = state.name;
-    
-    // Show full state content
-    const contentDiv = document.getElementById('state-full-content');
-  contentDiv.innerHTML = `
-    <h3 class="text-xl font-bold text-gray-800 mb-3">${state.name}</h3>
-    <p class="text-gray-600 mb-4">${state.history}</p>
-    <div class="bg-blue-50 p-4 rounded-lg mb-4">
-      <h4 class="font-semibold text-blue-800 mb-2">Curiosidades</h4>
-      <p class="text-blue-700">${state.curiosities}</p>
-    </div>
-    <div class="flex flex-wrap gap-2">
-      <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">#História</span>
-      <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">#Cultura</span>
-      <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">#Turismo</span>
-    </div>
-  `;
-
-    // Cities and attractions
-    const list = document.getElementById('cities-list');
-  list.innerHTML = '';
-
-  // Add cities
-  state.cities.forEach(city => {
-    const cityCard = document.createElement('div');
-    cityCard.className = 'attraction-card';
-    cityCard.innerHTML = `
-      <div class="font-semibold text-gray-800 flex items-center">
-        <i class="fas fa-map-marker-alt text-red-500 mr-2"></i>
-        ${city}
-      </div>
-      <div class="text-sm text-gray-600 mt-1">Cidade histórica</div>
-      <button onclick="addToItinerary('${uf}', '${city}')" 
-              class="mt-2 bg-purple-600 text-white px-3 py-1 rounded-full text-sm hover:bg-purple-700">
-        Adicionar ao Roteiro
-      </button>
-    `;
-    list.appendChild(cityCard);
-  });
-
-    // Add attractions
-    if (state.attractions && state.attractions.length > 0) {
-    const attrTitle = document.createElement('h4');
-    attrTitle.className = 'font-semibold text-gray-700 mt-6 mb-3';
-    attrTitle.textContent = 'Atrações Turísticas';
-    list.appendChild(attrTitle);
-
-    state.attractions.forEach(attr => {
-      const attrCard = document.createElement('div');
-      attrCard.className = 'attraction-card';
-      attrCard.innerHTML = `
-        <div class="font-semibold text-gray-800 flex items-center">
-          <i class="fas fa-monument text-blue-500 mr-2"></i>
-          ${attr}
-        </div>
-        <div class="text-sm text-gray-600 mt-1">Ponto turístico</div>
-        <button onclick="addToItinerary('${uf}', '${attr}')" 
-                class="mt-2 bg-purple-600 text-white px-3 py-1 rounded-full text-sm hover:bg-purple-700">
-          Adicionar ao Roteiro
-        </button>
-      `;
-      list.appendChild(attrCard);
-    });
-  }
-
-  document.getElementById('step-state').classList.add('hidden');
-  document.getElementById('step-city').classList.remove('hidden');
 }
 
 // Add to itinerary
