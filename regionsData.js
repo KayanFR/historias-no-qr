@@ -117,5 +117,135 @@ const regionsDetailed = {
       }
     ]
   }
+
+  nordeste: {
+    name: {
+      pt: "Região Nordeste",
+      en: "Northeast Region",
+      es: "Región Noreste"
+    },
+    history: {
+      pt: `O Nordeste é o berço da história do Brasil: foi em Porto Seguro (BA), em 1500, que Pedro Álvares Cabral chegou ao território, iniciando a colonização portuguesa. A região se desenvolveu com o ciclo do açúcar, baseado no trabalho escravo africano, gerando uma rica cultura afro-brasileira que ainda hoje define a identidade nordestina. No século XIX, o Nordeste foi palco de importantes movimentos de resistência, como a Revolução Pernambucana (1817) e a Confederação do Equador (1824), além da Guerra de Canudos (BA). Durante o século XX, enfrentou secas devastadoras, o que alimentou o imaginário do sertão sofrido — mas também revelou sua força na música, literatura e religiosidade popular. Hoje, o Nordeste une tradição e modernidade: é líder em turismo (praias, cultura, patrimônio histórico), energia renovável e inovação, mantendo viva sua alma de resistência, fé e alegria.`,
+      en: `The Northeast is the cradle of Brazil’s history: in 1500, Pedro Álvares Cabral landed in Porto Seguro (BA), marking the beginning of Portuguese colonization. The region developed around the sugar cycle, sustained by enslaved African labor, forging a rich Afro-Brazilian culture that still defines the Northeastern identity. In the 19th century, it became a stage for resistance movements like the Pernambucan Revolution (1817) and the Confederation of the Equator (1824), and later the Canudos War (BA). In the 20th century, devastating droughts shaped the image of the harsh sertão—but also gave rise to a powerful cultural expression in music, literature, and popular religion. Today, the Northeast blends tradition and modernity: it leads in tourism (beaches, culture, historical heritage), renewable energy, and innovation, preserving its soul of resilience, faith, and joy.`,
+      es: `El Noreste es la cuna de la historia de Brasil: en 1500, Pedro Álvares Cabral desembarcó en Porto Seguro (BA), marcando el inicio de la colonización portuguesa. La región se desarrolló con el ciclo del azúcar, basado en el trabajo esclavo africano, forjando una rica cultura afrobrasileña que aún define su identidad. En el siglo XIX, fue escenario de movimientos de resistencia como la Revolución Pernambucana (1817) y la Confederación del Ecuador (1824), y luego la Guerra de Canudos (BA). En el siglo XX, sequías devastadoras moldearon la imagen del sertão árido, pero también dieron impulso a una potente expresión cultural en música, literatura y religiosidad popular. Hoy, el Noreste une tradición y modernidad: lidera en turismo (playas, cultura, patrimonio histórico), energía renovable e innovación, conservando su alma de resistencia, fe y alegría.`
+    },
+    attractions: [
+      {
+        name: { pt: "Lençóis Maranhenses", en: "Lençóis Maranhenses", es: "Lençóis Maranhenses" },
+        location: "MA",
+        description: {
+          pt: "Deserto que vira mar durante o inverno amazônico: entre maio e setembro, chuvas formam milhares de lagoas de água cristalina entre as dunas — um fenômeno único no mundo.",
+          en: "A desert that becomes a sea during the Amazonian rainy season: between May and September, rains form thousands of crystal-clear lagoons among the dunes—a phenomenon unique in the world.",
+          es: "Un desierto que se vuelve mar durante el invierno amazónico: entre mayo y septiembre, las lluvias forman miles de lagunas de agua cristalina entre las dunas —un fenómeno único en el mundo."
+        }
+      },
+      {
+        name: { pt: "Pelourinho (Salvador)", en: "Pelourinho (Salvador)", es: "Pelourinho (Salvador)" },
+        location: "BA",
+        description: {
+          pt: "Centro histórico de Salvador, tombado pela UNESCO. Suas ruas de pedra, casarões coloridos e igrejas barrocas contam a história da colonização, da escravidão e da resistência cultural afro-brasileira.",
+          en: "Salvador’s historic center, a UNESCO World Heritage site. Its cobblestone streets, colorful mansions, and baroque churches tell the story of colonization, slavery, and Afro-Brazilian cultural resistance.",
+          es: "Centro histórico de Salvador, Patrimonio de la Humanidad por la UNESCO. Sus calles empedradas, casas coloniales y templos barrocos narran la historia de la colonización, la esclavitud y la resistencia cultural afrobrasileña."
+        }
+      },
+      {
+        name: { pt: "Chapada Diamantina", en: "Chapada Diamantina", es: "Chapada Diamantina" },
+        location: "BA",
+        description: {
+          pt: "Planalto com cânions, cachoeiras gigantes (como a Fumaça) e cavernas com águas azuis (Poço Encantado). Refúgio de espiritualidade, ecoturismo e trilhas desafiadoras.",
+          en: "A plateau with canyons, giant waterfalls (like Fumaça) and caves with turquoise waters (Poço Encantado). A haven for spirituality, ecotourism, and challenging hikes.",
+          es: "Meseta con cañones, cascadas gigantes (como la Fumaça) y cuevas con aguas turquesas (Poço Encantado). Refugio de espiritualidad, ecoturismo y senderos desafiantes."
+        }
+      },
+      {
+        name: { pt: "Jericoacoara", en: "Jericoacoara", es: "Jericoacoara" },
+        location: "CE",
+        description: {
+          pt: "Vila isolada entre dunas e lagoas, eleita uma das praias mais bonitas do mundo. O pôr do sol na Duna do Pôr do Sol e a Pedra Furada são imperdíveis.",
+          en: "A remote village nestled among dunes and lagoons, voted one of the world’s most beautiful beaches. The sunset at Duna do Pôr do Sol and the Pedra Furada arch are unmissable.",
+          es: "Pueblo aislado entre dunas y lagunas, elegido como una de las playas más bellas del mundo. La puesta de sol en la Duna do Pôr do Sol y la Pedra Furada son imperdibles."
+        }
+      },
+      {
+        name: { pt: "Carnaval de Olinda e Recife", en: "Carnival of Olinda and Recife", es: "Carnaval de Olinda y Recife" },
+        location: "PE",
+        description: {
+          pt: "O mais democrático e cultural do Brasil: bonecos gigantes, frevo acrobático e maracatu fazem a festa nas ladeiras de Olinda e nas ruas de Recife — lar do maior bloco carnavalesco do mundo, o Galo da Madrugada.",
+          en: "The most democratic and cultural carnival in Brazil: giant puppets, acrobatic frevo, and maracatu enliven the streets of Olinda and Recife—home to the world’s largest carnival bloc, Galo da Madrugada.",
+          es: "El carnaval más democrático y cultural de Brasil: muñecos gigantes, frevo acrobático y maracatu animan las calles de Olinda y Recife —hogar del mayor bloque carnavalesco del mundo, el Galo da Madrugada."
+        }
+      },
+      {
+        name: { pt: "Serra da Capivara", en: "Serra da Capivara", es: "Serra da Capivara" },
+        location: "PI",
+        description: {
+          pt: "Parque Nacional Patrimônio Mundial da UNESCO, abriga as pinturas rupestres mais antigas das Américas — com até 50 mil anos — reescrevendo a história da ocupação humana no continente.",
+          en: "A UNESCO World Heritage National Park, it houses the Americas' oldest rock paintings—up to 50,000 years old—rewriting the story of human settlement in the continent.",
+          es: "Parque Nacional Patrimonio Mundial de la UNESCO, alberga las pinturas rupestres más antiguas de las Américas —con hasta 50.000 años— reescribiendo la historia del poblamiento humano en el continente."
+        }
+      },
+      {
+        name: { pt: "Delta do Parnaíba", en: "Parnaíba Delta", es: "Delta del Parnaíba" },
+        location: "PI/MA",
+        description: {
+          pt: "Um dos três únicos deltas em mar aberto do planeta. Mais de 80 ilhas, manguezais e dunas formam um labirinto natural que muda com as marés — cenário para observar guarás vermelhos ao entardecer.",
+          en: "One of only three open-sea deltas in the world. Over 80 islands, mangroves, and dunes form a natural labyrinth that shifts with the tides—a perfect setting to watch red ibises at sunset.",
+          es: "Uno de los tres únicos deltas en mar abierto del planeta. Más de 80 islas, manglares y dunas forman un laberinto natural que cambia con las mareas —escenario ideal para observar ibis rojos al atardecer."
+        }
+      },
+      {
+        name: { pt: "Cânion do Xingó", en: "Xingó Canyon", es: "Cañón del Xingó" },
+        location: "SE/AL",
+        description: {
+          pt: "Um dos maiores cânions navegáveis do mundo, com paredões avermelhados de 50 metros e águas verdes do Rio São Francisco. Formado após a represa de Xingó (1994), é um espetáculo geológico único.",
+          en: "One of the world’s largest navigable canyons, with 50-meter red cliffs and emerald waters of the São Francisco River. Created after the Xingó dam (1994), it’s a unique geological spectacle.",
+          es: "Uno de los cañones navegables más grandes del mundo, con paredes rojas de 50 metros y aguas esmeralda del río São Francisco. Formado tras la represa de Xingó (1994), es un espectáculo geológico único."
+        }
+      }
+    ],
+    curiosities: [
+      {
+        pt: "São Luís (MA) é a única capital brasileira fundada por franceses — em 1612, durante a França Equinocial — e tem o maior conjunto de azulejos portugueses fora de Portugal.",
+        en: "São Luís (MA) is the only Brazilian capital founded by the French—in 1612, during the Equinoctial France—and holds the largest collection of Portuguese tiles outside Portugal.",
+        es: "São Luís (MA) es la única capital brasileña fundada por franceses —en 1612, durante la Francia Ecuatorial— y tiene la mayor colección de azulejos portugueses fuera de Portugal."
+      },
+      {
+        pt: "O Ceará foi o primeiro estado a abolir a escravidão no Brasil — em 25 de março de 1884 — quatro anos antes da Lei Áurea.",
+        en: "Ceará was the first Brazilian state to abolish slavery—on March 25, 1884—four years before the Golden Law.",
+        es: "Ceará fue el primer estado brasileño en abolir la esclavitud —el 25 de marzo de 1884— cuatro años antes de la Ley Áurea."
+      },
+      {
+        pt: "O Maior São João do Mundo é em Campina Grande (PB): dura 30 dias e reúne milhões de pessoas.",
+        en: "The world’s largest June Festival is in Campina Grande (PB): it lasts 30 days and draws millions of people.",
+        es: "El mayor San Juan del mundo se celebra en Campina Grande (PB): dura 30 días y reúne a millones de personas."
+      },
+      {
+        pt: "Pernambuco abriga a primeira sinagoga das Américas — a Kahal Zur Israel, em Recife — fundada em 1636 pelos judeus sefarditas sob o governo holandês.",
+        en: "Pernambuco houses the first synagogue in the Americas — Kahal Zur Israel in Recife — founded in 1636 by Sephardic Jews under Dutch rule.",
+        es: "Pernambuco alberga la primera sinagoga de las Américas —Kahal Zur Israel, en Recife— fundada en 1636 por judíos sefardíes bajo el gobierno holandés."
+      },
+      {
+        pt: "A Batalha do Jenipapo (PI, 1823) foi o confronto mais sangrento da Independência do Brasil — e o Piauí foi crucial para consolidar a soberania nacional.",
+        en: "The Battle of Jenipapo (PI, 1823) was the bloodiest conflict of Brazilian Independence—and Piauí was crucial to securing national sovereignty.",
+        es: "La Batalla del Jenipapo (PI, 1823) fue el conflicto más sangriento de la Independencia de Brasil —y Piauí fue crucial para consolidar la soberanía nacional."
+      },
+      {
+        pt: "O Rio Grande do Norte é o maior produtor de energia eólica do Brasil — 95% de sua eletricidade vem dos ventos!",
+        en: "Rio Grande do Norte is Brazil’s largest wind energy producer—95% of its electricity comes from wind!",
+        es: "Río Grande del Norte es el mayor productor de energía eólica de Brasil —¡el 95% de su electricidad proviene del viento!"
+      },
+      {
+        pt: "São Cristóvão (SE) é a quarta cidade mais antiga do Brasil — fundada em 1590 — e seu centro histórico é Patrimônio da Humanidade pela UNESCO.",
+        en: "São Cristóvão (SE) is Brazil’s fourth-oldest city—founded in 1590—and its historic center is a UNESCO World Heritage Site.",
+        es: "São Cristóvão (SE) es la cuarta ciudad más antigua de Brasil —fundada en 1590— y su centro histórico es Patrimonio de la Humanidad por la UNESCO."
+      },
+      {
+        pt: "Fernando de Noronha (PE) tem a Baía do Sancho, eleita repetidamente a praia mais bonita do mundo.",
+        en: "Fernando de Noronha (PE) is home to Baía do Sancho, repeatedly voted the world’s most beautiful beach.",
+        es: "Fernando de Noronha (PE) alberga la Bahía do Sancho, repetidamente elegida como la playa más bella del mundo."
+      }
+    ]
+  }
+};
   // demais regiões serão adicionadas conforme você enviar os arquivos
 };
