@@ -247,5 +247,125 @@ const regionsDetailed = {
     ]
   }
 };
+
+centro-oeste: {
+    name: {
+      pt: "Região Centro-Oeste",
+      en: "Central-West Region",
+      es: "Región Centro-Oeste"
+    },
+    history: {
+      pt: `O Centro-Oeste é o coração geográfico e político do Brasil — uma região de contrastes marcantes: da modernidade de Brasília à exuberância selvagem do Pantanal, passando pelos planaltos do Cerrado, berço das águas do país. Historicamente, foi território de povos indígenas como os Goyá, Bororo e Xavante, até a chegada dos bandeirantes no século XVIII, em busca de ouro e escravos. A criação da Capitania de Goiás (1748) e, posteriormente, do Distrito Federal (1960), transformou a região num eixo estratégico. Hoje, o Centro-Oeste equilibra liderança no agronegócio (soja, milho, pecuária), conservação ambiental (Pantanal e Cerrado são Patrimônios Mundiais da UNESCO) e inovação urbana — simbolizada por Brasília, única cidade moderna do século XX reconhecida como Patrimônio da Humanidade.`,
+      en: `The Central-West is Brazil’s geographical and political heart—a region of striking contrasts: from the modernity of Brasília to the wild exuberance of the Pantanal, through the highlands of the Cerrado, the birthplace of Brazil’s major rivers. Historically, it was home to Indigenous peoples like the Goyá, Bororo, and Xavante, until bandeirantes arrived in the 18th century seeking gold and enslaved people. The creation of the Captaincy of Goiás (1748) and later the Federal District (1960) turned the region into a strategic axis. Today, the Central-West balances leadership in agribusiness (soy, corn, cattle), environmental conservation (Pantanal and Cerrado are UNESCO World Heritage sites), and urban innovation—embodied by Brasília, the only 20th-century city recognized as a UNESCO World Heritage site.`,
+      es: `El Centro-Oeste es el corazón geográfico y político de Brasil —una región de contrastes marcantes: desde la modernidad de Brasilia hasta la exuberancia salvaje del Pantanal, pasando por los planaltos del Cerrado, cuna de las aguas del país. Históricamente, fue territorio de pueblos indígenas como los Goyá, Bororo y Xavante, hasta la llegada de los bandeirantes en el siglo XVIII, en busca de oro y esclavos. La creación de la Capitanía de Goiás (1748) y, posteriormente, del Distrito Federal (1960), transformó la región en un eje estratégico. Hoy, el Centro-Oeste equilibra liderazgo en el agronegocio (soja, maíz, ganadería), conservación ambiental (Pantanal y Cerrado son Patrimonios Mundiales de la UNESCO) e innovación urbana —simbolizada por Brasilia, única ciudad moderna del siglo XX reconocida como Patrimonio de la Humanidad.`
+    },
+    attractions: [
+      {
+        name: { pt: "Pantanal", en: "Pantanal", es: "Pantanal" },
+        location: "MS/MT",
+        description: {
+          pt: "Maior planície alagável do planeta, o Pantanal abriga a maior biodiversidade da América do Sul — com onças-pintadas, tuiuiús, jacarés e capivaras. É Patrimônio Natural da Humanidade pela UNESCO e símbolo da conservação ambiental brasileira.",
+          en: "The world’s largest tropical wetland, the Pantanal hosts South America’s richest biodiversity—including jaguars, jabiru storks, caimans, and capybaras. A UNESCO World Heritage Site, it symbolizes Brazilian environmental conservation.",
+          es: "La mayor llanura inundable del planeta, el Pantanal alberga la mayor biodiversidad de Sudamérica —con onzas pintadas, tuiuiús, caimanes y capibaras. Es Patrimonio Natural de la Humanidad por la UNESCO y símbolo de la conservación ambiental brasileña."
+        }
+      },
+      {
+        name: { pt: "Brasília", en: "Brasília", es: "Brasilia" },
+        location: "DF",
+        description: {
+          pt: "Inaugurada em 21 de abril de 1960, Brasília é símbolo do planejamento urbano moderno, com projeto de Lúcio Costa e arquitetura de Oscar Niemeyer. Sua Praça dos Três Poderes, Catedral e Congresso são ícones nacionais. É Patrimônio Cultural da Humanidade — única cidade moderna do século XX a receber esse título.",
+          en: "Inaugurated on April 21, 1960, Brasília symbolizes modern urban planning, with a masterplan by Lúcio Costa and architecture by Oscar Niemeyer. Its Three Powers Plaza, Cathedral, and Congress are national icons. A UNESCO World Heritage Site—the only 20th-century city so honored.",
+          es: "Inaugurada el 21 de abril de 1960, Brasilia simboliza la planificación urbana moderna, con proyecto de Lúcio Costa y arquitectura de Oscar Niemeyer. Su Plaza de los Tres Poderes, Catedral y Congreso son íconos nacionales. Patrimonio de la Humanidad por la UNESCO —única ciudad moderna del siglo XX con ese título."
+        }
+      },
+      {
+        name: { pt: "Chapada dos Veadeiros", en: "Chapada dos Veadeiros", es: "Chapada dos Veadeiros" },
+        location: "GO",
+        description: {
+          pt: "Patrimônio Natural da Humanidade, é um planalto cristalino com cachoeiras espetaculares (como Santa Bárbara e Catarata dos Couros), formações rochosas milenares e rica biodiversidade do Cerrado. Conhecida também por sua energia espiritual e misticismo.",
+          en: "A UNESCO World Heritage Site, this crystalline plateau features breathtaking waterfalls (like Santa Bárbara and Catarata dos Couros), ancient rock formations, and rich Cerrado biodiversity. Also renowned for its spiritual energy and mysticism.",
+          es: "Patrimonio Natural de la Humanidad, es un planalto cristalino con cascadas espectaculares (como Santa Bárbara y Catarata dos Couros), formaciones rocosas milenarias y rica biodiversidad del Cerrado. Conocida también por su energía espiritual y misticismo."
+        }
+      },
+      {
+        name: { pt: "Caldas Novas", en: "Caldas Novas", es: "Caldas Novas" },
+        location: "GO",
+        description: {
+          pt: "Maior estância hidrotermal do mundo, com águas naturalmente quentes (até 60°C) brotando do solo. Ideal para relaxamento, saúde e lazer, com resorts, parques aquáticos e natureza preservada.",
+          en: "The world’s largest hydrothermal resort, with naturally hot waters (up to 60°C) emerging from the ground. Ideal for relaxation, wellness, and leisure, with resorts, water parks, and preserved nature.",
+          es: "La mayor estación hidrotermal del mundo, con aguas naturalmente calientes (hasta 60°C) que brotan del suelo. Ideal para relajación, salud y ocio, con resorts, parques acuáticos y naturaleza preservada."
+        }
+      },
+      {
+        name: { pt: "Bonito", en: "Bonito", es: "Bonito" },
+        location: "MS",
+        description: {
+          pt: "Berço do ecoturismo sustentável no Brasil. Seus rios cristalinos (como o Sucuri e Rio da Prata), grutas (Lago Azul, Buraco das Araras) e cachoeiras permitem flutuação entre peixes coloridos — experiência única no mundo.",
+          en: "The birthplace of sustainable ecotourism in Brazil. Its crystal-clear rivers (e.g., Sucuri, Rio da Prata), caves (Blue Lake, Buraco das Araras), and waterfalls allow snorkeling among colorful fish—a unique experience worldwide.",
+          es: "Cuna del ecoturismo sostenible en Brasil. Sus ríos cristalinos (como Sucuri y Río da Prata), grutas (Lago Azul, Buraco das Araras) y cascadas permiten flotación entre peces coloridos —experiencia única en el mundo."
+        }
+      },
+      {
+        name: { pt: "Parque Nacional das Emas", en: "Emas National Park", es: "Parque Nacional de las Emas" },
+        location: "GO/MT",
+        description: {
+          pt: "Patrimônio Natural da Humanidade, abriga savanas do Cerrado e é palco do raro fenômeno da bioluminescência do cerrado — onde fungos iluminam o campo à noite. Lar da ema, lobo-guará e tamanduá-bandeira.",
+          en: "A UNESCO World Heritage Site, it protects Cerrado savannas and hosts the rare cerrado bioluminescence phenomenon—where fungi light up the fields at night. Home to the rhea, maned wolf, and giant anteater.",
+          es: "Patrimonio Natural de la Humanidad, alberga sabanas del Cerrado y es escenario del raro fenómeno de bioluminiscencia del cerrado —donde hongos iluminan el campo por la noche. Hogar de la ñandú, lobo de crin y oso hormiguero gigante."
+        }
+      },
+      {
+        name: { pt: "Terra Ronca", en: "Terra Ronca", es: "Terra Ronca" },
+        location: "GO",
+        description: {
+          pt: "Um dos maiores complexos de cavernas da América do Sul, com rios subterrâneos, estalactites e estalagmites milenares. Local de fé e aventura, abriga a Festa do Bom Jesus da Lapa — procissão dentro das cavernas.",
+          en: "One of South America’s largest cave systems, with underground rivers, thousand-year-old stalactites and stalagmites. A site of faith and adventure, hosting the Festa do Bom Jesus da Lapa—a procession held inside the caves.",
+          es: "Uno de los mayores complejos de cavernas de Sudamérica, con ríos subterráneos, estalactitas y estalagmitas milenarias. Lugar de fe y aventura, alberga la Fiesta del Bom Jesus da Lapa —procesión dentro de las cavernas."
+        }
+      }
+    ],
+    curiosities: [
+      {
+        pt: "Brasília foi construída em apenas 41 meses — um feito considerado impossível na época. Mais de 30 mil candangos trabalharam sob condições extremas para erguer a capital.",
+        en: "Brasília was built in just 41 months—a feat deemed impossible at the time. Over 30,000 candangos worked under extreme conditions to erect the capital.",
+        es: "Brasilia se construyó en solo 41 meses —una hazaña considerada imposible en su época. Más de 30.000 candangos trabajaron en condiciones extremas para erigir la capital."
+      },
+      {
+        pt: "O Cerrado é o berço das águas do Brasil: de lá nascem os rios Araguaia, Tocantins, São Francisco, Paraná e Paraguai — responsáveis por 90% da água doce do país.",
+        en: "The Cerrado is the birthplace of Brazil’s waters: the Araguaia, Tocantins, São Francisco, Paraná, and Paraguay rivers originate here—supplying 90% of the country’s freshwater.",
+        es: "El Cerrado es la cuna de las aguas de Brasil: allí nacen los ríos Araguaia, Tocantins, São Francisco, Paraná y Paraguay —responsables del 90% del agua dulce del país."
+      },
+      {
+        pt: "A Procissão do Fogaréu, em Goiás Velho, é uma das manifestações religiosas mais impressionantes do Brasil — homens encapuzados marcham com tochas na Semana Santa, encenando a prisão de Cristo.",
+        en: "The Procissão do Fogaréu, in Goiás Velho, is one of Brazil’s most impressive religious events—hooded men march with torches during Holy Week, reenacting Christ’s arrest.",
+        es: "La Procesión del Fogaréu, en Goiás Velho, es una de las manifestaciones religiosas más impresionantes de Brasil —hombres encapuchados marchan con antorchas en Semana Santa, recreando la prisión de Cristo."
+      },
+      {
+        pt: "O Pantanal tem mais de 650 espécies de aves, 260 de peixes e 100 de mamíferos — a maior concentração de vida selvagem da América do Sul.",
+        en: "The Pantanal hosts over 650 bird species, 260 fish, and 100 mammals—the highest concentration of wildlife in South America.",
+        es: "El Pantanal alberga más de 650 especies de aves, 260 de peces y 100 de mamíferos —la mayor concentración de vida silvestre de Sudamérica."
+      },
+      {
+        pt: "A Gruta do Lago Azul (Bonito) tem 90 metros de profundidade — e ainda não se sabe onde termina sua rede subterrânea. Fósseis de preguiças gigantes já foram encontrados lá.",
+        en: "The Blue Lake Cave (Bonito) is 90 meters deep—and its underground network’s end remains unknown. Giant sloth fossils have been found inside.",
+        es: "La Gruta del Lago Azul (Bonito) tiene 90 metros de profundidad —y aún se desconoce dónde termina su red subterránea. Ya se encontraron fósiles de perezosos gigantes allí."
+      },
+      {
+        pt: "O Kadiwéu, povo indígena do MS, foi o único a receber terras diretamente de Dom Pedro II — em reconhecimento à sua bravura na Guerra do Paraguai.",
+        en: "The Kadiwéu Indigenous people of MS were the only group granted land directly by Emperor Dom Pedro II—in recognition of their bravery in the Paraguayan War.",
+        es: "Los Kadiwéu, pueblo indígena de MS, fueron el único grupo en recibir tierras directamente del emperador Dom Pedro II —en reconocimiento a su valentía en la Guerra del Paraguay."
+      },
+      {
+        pt: "O fenômeno da bioluminescência no Parque Nacional das Emas é tão raro que poucos cientistas conseguiram registrá-lo — luzes verdes surgem espontaneamente no cerrado após as chuvas.",
+        en: "The bioluminescence phenomenon in Emas National Park is so rare that few scientists have documented it—green lights spontaneously appear in the Cerrado after rains.",
+        es: "El fenómeno de bioluminiscencia en el Parque Nacional de las Emas es tan raro que pocos científicos lo han registrado —luces verdes surgen espontáneamente en el cerrado tras las lluvias."
+      },
+      {
+        pt: "Mato Grosso do Sul foi criado em 1979 — e até hoje há confusão com Mato Grosso. Por isso, a placa do carro do estado leva o nome completo: ‘Mato Grosso do Sul’.",
+        en: "Mato Grosso do Sul was created in 1979—and confusion with Mato Grosso persists. That’s why state license plates read the full name: ‘Mato Grosso do Sul’.",
+        es: "Mato Grosso do Sul se creó en 1979 —y aún hoy hay confusión con Mato Grosso. Por eso, las placas del estado llevan el nombre completo: ‘Mato Grosso do Sul’."
+      }
+    ]
+  }
   // demais regiões serão adicionadas conforme você enviar os arquivos
 };
