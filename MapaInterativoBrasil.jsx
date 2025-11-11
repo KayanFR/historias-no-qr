@@ -43,7 +43,7 @@ const regionColors = {
   sul: '#ef4444'
 };
 
-export default function MapaInterativoBrasil({ geoUrl = '/data/brazil-states.json' }) {
+export default function MapaInterativoBrasil({ geoUrl = 'brazil-states.json' }) {
   const [currentStep, setCurrentStep] = useState('region'); // 'region' | 'state' | 'item'
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
