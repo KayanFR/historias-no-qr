@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brasil QR Turismo</title>
+  <link rel="stylesheet" href="custom.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">🇧🇷 <span>Brasil QR Turismo</span></div>
+    <nav class="nav">
+      <a href="#home">Início</a>
+      <a href="#regions">Regiões</a>
+      <a href="#how-it-works">Como Funciona</a>
+      <a href="#accessibility">Acessibilidade</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Descubra o Brasil com QR Codes</h1>
+        <p>Escaneie códigos QR em pontos turísticos e mergulhe na história, cultura e curiosidades de cada região.</p>
+        <button class="btn-primary" onclick="scrollToMap()">Explorar Regiões</button>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+      <h2>Como Funciona?</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Visite um ponto turístico</h3>
+          <p>Encontre um QR Code instalado no local (placa, monumento, museu etc.).</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Escaneie com seu celular</h3>
+          <p>Use a câmera ou um app de leitura de QR Code.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Acesse conteúdo exclusivo</h3>
+          <p>História, atrações próximas, curiosidades e áudio-guia em múltiplos idiomas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="regions" class="regions">
+      <h2>Explore as Regiões do Brasil</h2>
+      <div class="map-placeholder" id="brazil-map">
+        <!-- Futuramente: mapa SVG interativo com cliques nas regiões -->
+        <p class="map-instruction">Mapa interativo em desenvolvimento — selecione uma região abaixo:</p>
+        <div class="region-buttons">
+          <button class="region-btn" data-region="norte">Norte</button>
+          <button class="region-btn" data-region="nordeste">Nordeste</button>
+          <button class="region-btn" data-region="centro-oeste">Centro-Oeste</button>
+          <button class="region-btn" data-region="sudeste">Sudeste</button>
+          <button class="region-btn" data-region="sul">Sul</button>
+        </div>
+      </div>
+
+      <div id="region-content" class="region-content hidden">
+        <h3 id="region-title">Carregando...</h3>
+        <div id="region-text"></div>
+        <div class="qr-preview">
+          <p>📍 QR Code para esta região (exemplo):</p>
+          <!-- Placeholder para QR Code gerado dinamicamente depois -->
+          <div class="qr-placeholder">[QR Code]</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Brasil QR Turismo — Projeto independente, sem vínculo com órgãos públicos.</p>
+    <p>✅ Acessibilidade • 🌐 Multilíngue • 📱 Mobile-first</p>
+  </footer>
+
+  <script>
+    function scrollToMap() {
+      document.getElementById('regions').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.region-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const region = this.getAttribute('data-region');
+        const titleMap = {
+          norte: 'Região Norte',
+          nordeste: 'Região Nordeste',
+          'centro-oeste': 'Região Centro-Oeste',
+          sudeste: 'Região Sudeste',
+          sul: 'Região Sul'
+        };
+        document.getElementById('region-title').textContent = titleMap[region];
+        document.getElementById('region-text').innerHTML = `
+          <p><strong>${titleMap[region]}</strong> — Em breve: história completa, cidades principais, pontos turísticos e curiosidades locais.</p>
+          <p>Este conteúdo será carregado a partir de arquivos estruturados (ex: JSON ou módulos), conforme seus documentos Word já preparados ✅</p>
+        `;
+        document.getElementById('region-content').classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
