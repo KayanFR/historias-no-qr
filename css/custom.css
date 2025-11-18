@@ -245,4 +245,88 @@ body {
     flex-direction: column;
     align-items: center;
   }
+
+/* ===== Header Right (idioma + escaneamento) ===== */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#language-selector, #scan-btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.95rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #ddd;
+  background: white;
+}
+
+#scan-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* ===== Áudio ===== */
+.audio-demo {
+  background: #f8fff9;
+  padding: 1.2rem;
+  border-radius: var(--border-radius);
+  margin: 1.5rem auto;
+  max-width: 600px;
+  border-left: 4px solid var(--primary);
+}
+
+.audio-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.btn-audio {
+  background: #e9f7ee;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-audio:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* ===== Acessibilidade ===== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== Responsivo: Mobile First ===== */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+  .hero-content {
+    padding: 0 1rem;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  #scan-btn span {
+    display: none; /* Mantém só o ícone no mobile */
+  }
 }
