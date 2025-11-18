@@ -4,63 +4,87 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brasil QR Turismo</title>
-  <link rel="stylesheet" href="css/custom.css" />
+  <link rel="stylesheet" href="custom.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- QR Code Detection (para scanner.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 </head>
 <body>
   <header class="header">
-    <div class="logo">🇧🇷 <span>Brasil QR Turismo</span></div>
-    <nav class="nav">
-      <a href="#home">Início</a>
-      <a href="#regions">Regiões</a>
-      <a href="#how-it-works">Como Funciona</a>
-      <a href="#accessibility">Acessibilidade</a>
-    </nav>
+    <div class="logo">🇧🇷 <span data-i18n="site_title">Brasil QR Turismo</span></div>
+    <div class="header-right">
+      <!-- Seletor de Idioma -->
+      <label for="language-selector" class="visually-hidden" data-i18n="language_label">Idioma:</label>
+      <select id="language-selector" aria-label="Seletor de idioma">
+        <option value="pt">🇵🇹 Português</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="es">🇪🇸 Español</option>
+      </select>
+
+      <!-- Botão de Escaneamento (móvel) -->
+      <button id="scan-btn" class="btn-scan" data-action="scan" aria-label="Escanear QR Code">
+        📷 Escanear
+      </button>
+    </div>
   </header>
 
   <main>
     <section id="home" class="hero">
       <div class="hero-content">
-        <h1>Descubra o Brasil com QR Codes</h1>
-        <p>Escaneie códigos QR em pontos turísticos e mergulhe na história, cultura e curiosidades de cada região.</p>
-        <button class="btn-primary" onclick="scrollToMap()">Explorar Regiões</button>
+        <h1 data-i18n="home_title">Descubra o Brasil com QR Codes</h1>
+        <p data-i18n="home_subtitle">
+          Escaneie códigos QR em pontos turísticos e mergulhe na história, cultura e curiosidades de cada região.
+        </p>
+
+        <!-- Áudio na seção principal -->
+        <div class="audio-demo" data-audio-content>
+          <p data-i18n="audio_demo_text">Bem-vindo ao Brasil QR Turismo! Um projeto independente para tornar sua viagem mais rica e acessível.</p>
+          <div class="audio-controls">
+            <button class="btn-audio" data-audio="play" data-lang="pt">🔊 Ouvir (PT)</button>
+            <button class="btn-audio" data-audio="play" data-lang="en">🔊 Listen (EN)</button>
+            <button class="btn-audio" data-audio="stop">⏹ Parar</button>
+          </div>
+        </div>
+
+        <button id="explore-btn" class="btn-primary" data-i18n="explore_regions_btn">Explorar Regiões</button>
       </div>
     </section>
 
     <section id="how-it-works" class="how-it-works">
-      <h2>Como Funciona?</h2>
+      <h2 data-i18n="how_it_works">Como Funciona?</h2>
       <div class="steps">
         <div class="step">
           <div class="step-number">1</div>
-          <h3>Visite um ponto turístico</h3>
-          <p>Encontre um QR Code instalado no local (placa, monumento, museu etc.).</p>
+          <h3 data-i18n="step1">Visite um ponto turístico</h3>
+          <p data-i18n="step1_desc">Encontre um QR Code instalado no local (placa, monumento, museu etc.).</p>
         </div>
         <div class="step">
           <div class="step-number">2</div>
-          <h3>Escaneie com seu celular</h3>
-          <p>Use a câmera ou um app de leitura de QR Code.</p>
+          <h3 data-i18n="step2">Escaneie com seu celular</h3>
+          <p data-i18n="step2_desc">Use a câmera ou um app de leitura de QR Code.</p>
         </div>
         <div class="step">
           <div class="step-number">3</div>
-          <h3>Acesse conteúdo exclusivo</h3>
-          <p>História, atrações próximas, curiosidades e áudio-guia em múltiplos idiomas.</p>
+          <h3 data-i18n="step3">Acesse conteúdo exclusivo</h3>
+          <p data-i18n="step3_desc">História, atrações próximas, curiosidades e áudio-guia em múltiplos idiomas.</p>
         </div>
       </div>
     </section>
 
     <section id="regions" class="regions">
-      <h2>Explore as Regiões do Brasil</h2>
+      <h2 data-i18n="regions">Explore as Regiões do Brasil</h2>
       <div class="map-placeholder" id="brazil-map">
-        <!-- Futuramente: mapa SVG interativo com cliques nas regiões -->
-        <p class="map-instruction">Mapa interativo em desenvolvimento — selecione uma região abaixo:</p>
+        <p class="map-instruction" data-i18n="map_instruction">
+          Mapa interativo em desenvolvimento — selecione uma região abaixo:
+        </p>
         <div class="region-buttons">
-          <button class="region-btn" data-region="norte">Norte</button>
-          <button class="region-btn" data-region="nordeste">Nordeste</button>
-          <button class="region-btn" data-region="centro-oeste">Centro-Oeste</button>
-          <button class="region-btn" data-region="sudeste">Sudeste</button>
-          <button class="region-btn" data-region="sul">Sul</button>
+          <button class="region-btn" data-region="norte" data-i18n="region_norte">Norte</button>
+          <button class="region-btn" data-region="nordeste" data-i18n="region_nordeste">Nordeste</button>
+          <button class="region-btn" data-region="centro-oeste" data-i18n="region_centro_oeste">Centro-Oeste</button>
+          <button class="region-btn" data-region="sudeste" data-i18n="region_sudeste">Sudeste</button>
+          <button class="region-btn" data-region="sul" data-i18n="region_sul">Sul</button>
         </div>
       </div>
 
@@ -68,8 +92,7 @@
         <h3 id="region-title">Carregando...</h3>
         <div id="region-text"></div>
         <div class="qr-preview">
-          <p>📍 QR Code para esta região (exemplo):</p>
-          <!-- Placeholder para QR Code gerado dinamicamente depois -->
+          <p data-i18n="qr_preview_label">📍 QR Code para esta região (exemplo):</p>
           <div class="qr-placeholder">[QR Code]</div>
         </div>
       </div>
@@ -77,32 +100,93 @@
   </main>
 
   <footer class="footer">
-    <p>&copy; 2025 Brasil QR Turismo — Projeto independente, sem vínculo com órgãos públicos.</p>
-    <p>✅ Acessibilidade • 🌐 Multilíngue • 📱 Mobile-first</p>
+    <p>&copy; 2025 <span data-i18n="site_title">Brasil QR Turismo</span> — 
+      <span data-i18n="footer_disclaimer">Projeto independente, sem vínculo com órgãos públicos.</span>
+    </p>
+    <p>✅ <span data-i18n="accessibility">Acessibilidade</span> • 
+       🌐 <span data-i18n="multilingual">Multilíngue</span> • 
+       📱 <span data-i18n="mobile_first">Mobile-first</span>
+    </p>
   </footer>
 
-  <script>
-    function scrollToMap() {
-      document.getElementById('regions').scrollIntoView({ behavior: 'smooth' });
-    }
+  <!-- Scripts (ordem importante!) -->
+  <script src="utils.js"></script>
+  <script src="i18n.js"></script>
+  <script src="audio.js"></script>
+  <script src="scanner.js"></script>
+  <script src="map.js"></script>
+  <script src="route.js"></script>
+  <script src="main.js"></script>
 
-    document.querySelectorAll('.region-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const region = this.getAttribute('data-region');
-        const titleMap = {
-          norte: 'Região Norte',
-          nordeste: 'Região Nordeste',
-          'centro-oeste': 'Região Centro-Oeste',
-          sudeste: 'Região Sudeste',
-          sul: 'Região Sul'
-        };
-        document.getElementById('region-title').textContent = titleMap[region];
-        document.getElementById('region-text').innerHTML = `
-          <p><strong>${titleMap[region]}</strong> — Em breve: história completa, cidades principais, pontos turísticos e curiosidades locais.</p>
-          <p>Este conteúdo será carregado a partir de arquivos estruturados (ex: JSON ou módulos), conforme seus documentos Word já preparados ✅</p>
-        `;
-        document.getElementById('region-content').classList.remove('hidden');
-      });
+  <!-- Traduções extras (ex: para botões) -->
+  <script>
+    // Garante que traduções personalizadas existam
+    const extraKeys = {
+      pt: {
+        site_title: 'Brasil QR Turismo',
+        explore_regions_btn: 'Explorar Regiões',
+        audio_demo_text: 'Bem-vindo ao Brasil QR Turismo! Um projeto independente para tornar sua viagem mais rica e acessível.',
+        step1_desc: 'Encontre um QR Code instalado no local (placa, monumento, museu etc.).',
+        step2_desc: 'Use a câmera ou um app de leitura de QR Code.',
+        step3_desc: 'História, atrações próximas, curiosidades e áudio-guia em múltiplos idiomas.',
+        map_instruction: 'Mapa interativo em desenvolvimento — selecione uma região abaixo:',
+        qr_preview_label: '📍 QR Code para esta região (exemplo):',
+        region_norte: 'Norte',
+        region_nordeste: 'Nordeste',
+        region_centro_oeste: 'Centro-Oeste',
+        region_sudeste: 'Sudeste',
+        region_sul: 'Sul',
+        footer_disclaimer: 'Projeto independente, sem vínculo com órgãos públicos.',
+        accessibility: 'Acessibilidade',
+        multilingual: 'Multilíngue',
+        mobile_first: 'Mobile-first'
+      },
+      en: {
+        site_title: 'Brazil QR Tourism',
+        explore_regions_btn: 'Explore Regions',
+        audio_demo_text: 'Welcome to Brazil QR Tourism! An independent project to make your trip richer and more accessible.',
+        step1_desc: 'Find a QR Code installed at the site (sign, monument, museum, etc.).',
+        step2_desc: 'Use your camera or a QR Code reader app.',
+        step3_desc: 'History, nearby attractions, curiosities, and audio guide in multiple languages.',
+        map_instruction: 'Interactive map under development — select a region below:',
+        qr_preview_label: '📍 QR Code for this region (example):',
+        region_norte: 'North',
+        region_nordeste: 'Northeast',
+        region_centro_oeste: 'Midwest',
+        region_sudeste: 'Southeast',
+        region_sul: 'South',
+        footer_disclaimer: 'Independent project, not affiliated with public agencies.',
+        accessibility: 'Accessibility',
+        multilingual: 'Multilingual',
+        mobile_first: 'Mobile-first'
+      },
+      es: {
+        site_title: 'Turismo QR Brasil',
+        explore_regions_btn: 'Explorar Regiones',
+        audio_demo_text: '¡Bienvenido a Turismo QR Brasil! Un proyecto independiente para hacer tu viaje más rico y accesible.',
+        step1_desc: 'Encuentra un código QR instalado en el lugar (letrero, monumento, museo, etc.).',
+        step2_desc: 'Usa tu cámara o una app lectora de códigos QR.',
+        step3_desc: 'Historia, atracciones cercanas, curiosidades y guía de audio en varios idiomas.',
+        map_instruction: 'Mapa interactivo en desarrollo — selecciona una región a continuación:',
+        qr_preview_label: '📍 Código QR para esta región (ejemplo):',
+        region_norte: 'Norte',
+        region_nordeste: 'Noreste',
+        region_centro_oeste: 'Centro-Oeste',
+        region_sudeste: 'Sudeste',
+        region_sul: 'Sur',
+        footer_disclaimer: 'Proyecto independiente, sin vínculo con organismos públicos.',
+        accessibility: 'Accesibilidad',
+        multilingual: 'Multilingüe',
+        mobile_first: 'Mobile-first'
+      }
+    };
+
+    // Injeta no i18n (opcional — útil até termos regions.json)
+    document.addEventListener('i18n:langChanged', () => {
+      if (window.i18n && i18n.currentLang && extraKeys[i18n.currentLang]) {
+        Object.assign(i18n.translations?.[i18n.currentLang] || {}, extraKeys[i18n.currentLang]);
+        i18n.updateDOM();
+      }
     });
   </script>
 </body>
