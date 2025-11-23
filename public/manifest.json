@@ -1,0 +1,23 @@
+{
+  "short_name": "Histórias QR",  
+  "name": "Histórias no QR — Conhecimento Digital",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],  
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#1e40af",
+  "description": "Acesse histórias, curiosidades e áudios sobre pontos turísticos ao escanear QR Codes.",
+  "orientation": "portrait"
+}
