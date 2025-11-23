@@ -1,0 +1,52 @@
+{
+  "places": [
+   {
+      "id": "praia-copacabana",
+      "title": {
+        "pt": "Praia de Copacabana",
+        "en": "Copacabana Beach",
+        "es": "Playa de Copacabana"
+      },
+      "description": {
+        "pt": "Conhecida mundialmente, Copacabana tem 4 km de extensão e é símbolo do Rio de Janeiro. Seu calçadão, com ondas em preto e branco, foi desenhado por Roberto Burle Marx em 1970.",
+        "en": "World-famous, Copacabana stretches 4 km and is a symbol of Rio de Janeiro. Its wave-patterned promenade was designed by Roberto Burle Marx in 1970.",
+        "es": "Conocida mundialmente, Copacabana tiene 4 km de extensión y es un símbolo de Río de Janeiro. Su paseo marítimo con ondas en blanco y negro fue diseñado por Roberto Burle Marx en 1970."     
+      },          
+      "audioUrl": {
+        "pt": "/audio/copacabana-pt.mp3",
+        "en": "/audio/copacabana-en.mp3",
+        "es": "/audio/copacabana-es.mp3"
+      },
+      "imageUrl": "/images/copacabana.jpg",
+      "location": {
+        "lat": -22.9868,
+        "lng": -43.1845
+      },
+      "nearby": ["forte-copacabana", "cristo-redentor"]
+    },
+    {
+      "id": "forte-copacabana",
+      "title": {
+        "pt": "Forte de Copacabana",
+        "en": "Copacabana Fort",
+        "es": "Forte de Copacabana"
+      },
+      "description": {
+        "pt": "Construído em 1914, o forte abriga o Museu Histórico do Exército e um charmoso café com vista para o mar. Foi palco da Revolta dos 18 do Forte, em 1922.",
+        "en": "Built in 1914, the fort houses the Army Historical Museum and a charming café with ocean views. It was the site of the 1922 '18 of the Fort' revolt.",
+        "es": "Construido en 1914, el fuerte alberga el Museo Histórico del Ejército y un encantador café con vistas al mar. Fue escenario de la Revuelta de los 18 del Fuerte en 1922."
+      },
+      "audioUrl": {
+        "pt": "/placeholder-audio.mp3",
+        "en": "/placeholder-audio.mp3",
+        "es": "/placeholder-audio.mp3"
+      },
+      "imageUrl": "/placeholder-image.jpg",
+      "location": {
+        "lat": -22.9845,
+        "lng": -43.1877
+      },
+      "nearby": ["praia-copacabana"]
+    }
+  ]
+}
